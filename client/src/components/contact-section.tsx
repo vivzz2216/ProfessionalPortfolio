@@ -59,18 +59,21 @@ export default function ContactSection() {
   };
 
   return (
-    <section ref={sectionRef} id="contact" className="py-20 bg-gradient-to-br from-portfolio-secondary via-portfolio-neutral to-portfolio-secondary relative overflow-hidden">
-      {/* Advanced Background Effects */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 right-10 w-96 h-96 bg-portfolio-primary/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 left-10 w-80 h-80 bg-portfolio-accent/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    <section ref={sectionRef} id="contact" className="py-20 bg-gradient-to-br from-portfolio-secondary via-portfolio-neutral to-black relative overflow-hidden">
+      {/* Hero Section Color Matching Background */}
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute top-10 right-10 w-96 h-96 bg-gradient-to-r from-portfolio-primary/30 to-portfolio-accent/30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-r from-portfolio-accent/30 to-portfolio-primary/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-portfolio-primary/20 rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
       
-      {/* Floating particles */}
+      {/* Hero-style Floating particles */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-portfolio-accent rounded-full animate-ping"></div>
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-gradient-to-r from-portfolio-accent to-portfolio-primary rounded-full animate-ping"></div>
         <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-portfolio-primary rounded-full animate-ping delay-500"></div>
         <div className="absolute top-1/2 left-1/3 w-1 h-1 bg-portfolio-accent rounded-full animate-ping delay-1000"></div>
+        <div className="absolute top-1/5 right-1/3 w-1 h-1 bg-portfolio-accent rounded-full animate-ping delay-1500"></div>
+        <div className="absolute bottom-1/4 left-1/5 w-1 h-1 bg-portfolio-primary rounded-full animate-ping delay-2000"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -156,7 +159,7 @@ export default function ContactSection() {
           <div ref={formRef} className={`transition-all duration-1000 delay-600 ${
             formVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
           }`}>
-            <Card className="hologram-effect border-portfolio-primary/30 bg-portfolio-secondary/20 backdrop-blur-lg">
+            <Card className="hologram-effect border-portfolio-primary/40 bg-gradient-to-br from-portfolio-secondary/30 to-portfolio-neutral/20 backdrop-blur-lg shadow-2xl">
               <CardHeader className="text-center">
                 <CardTitle className="text-3xl font-bold text-white font-['Orbitron']">
                   Send a Message

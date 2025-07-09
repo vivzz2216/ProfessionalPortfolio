@@ -1,5 +1,11 @@
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
-import { Code2, Zap, Globe, Award, GraduationCap, Mail, Phone, MapPin, Download, ExternalLink } from 'lucide-react';
+import { Code2, Zap, Globe, Award, GraduationCap, Mail, Phone, MapPin, Download, ExternalLink, Calendar, Brain, Database, Code } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import profileImage from '@assets/vivek_1752099066781.jpg';
+import resumePDF from '@assets/vivekpillai_resume_1752099080856.pdf';
 
 export default function AboutSection() {
   const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation();
@@ -40,7 +46,7 @@ export default function AboutSection() {
                   <div className="absolute inset-0 bg-gradient-to-r from-portfolio-primary to-portfolio-accent rounded-full animate-spin-slow"></div>
                   <div className="absolute inset-2 bg-portfolio-secondary rounded-full flex items-center justify-center">
                     <img 
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=500"
+                      src={profileImage}
                       alt="Vivek Pillai - IT Engineer" 
                       className="w-56 h-56 rounded-full object-cover"
                     />
@@ -64,39 +70,41 @@ export default function AboutSection() {
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
                       <div className="w-8 h-8 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
-                        <Globe className="w-4 h-4 text-portfolio-accent" />
+                        <MapPin className="w-4 h-4 text-portfolio-accent" />
                       </div>
                       <span className="text-gray-300 font-['Fira_Code']">Mumbai, India</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <GraduationCap className="w-5 h-5 text-portfolio-primary" />
-                      <span className="text-gray-300 font-['Fira_Code']">B.E. IT Final Year</span>
+                      <div className="w-8 h-8 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
+                        <GraduationCap className="w-4 h-4 text-portfolio-accent" />
+                      </div>
+                      <span className="text-gray-300 font-['Fira_Code']">SFIT - IT Engineering</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <MapPin className="w-5 h-5 text-portfolio-accent" />
-                      <span className="text-gray-300 font-['Fira_Code']">SFIT College</span>
+                      <div className="w-8 h-8 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
+                        <Mail className="w-4 h-4 text-portfolio-accent" />
+                      </div>
+                      <span className="text-gray-300 font-['Fira_Code']">pillaivivek16@gmail.com</span>
                     </div>
                   </div>
-                  
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
-                      <Phone className="w-5 h-5 text-portfolio-primary" />
+                      <div className="w-8 h-8 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
+                        <Phone className="w-4 h-4 text-portfolio-accent" />
+                      </div>
                       <span className="text-gray-300 font-['Fira_Code']">+91 7249292743</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <Mail className="w-5 h-5 text-portfolio-accent" />
-                      <span className="text-gray-300 font-['Fira_Code']">pillaivivek16@gmail.com</span>
+                      <div className="w-8 h-8 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
+                        <Calendar className="w-4 h-4 text-portfolio-accent" />
+                      </div>
+                      <span className="text-gray-300 font-['Fira_Code']">Final Year Student</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <ExternalLink className="w-5 h-5 text-portfolio-primary" />
-                      <a 
-                        href="https://linkedin.com/in/vivek-pillai-281a68253" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-gray-300 font-['Fira_Code'] hover:text-portfolio-accent transition-colors"
-                      >
-                        LinkedIn Profile
-                      </a>
+                      <div className="w-8 h-8 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
+                        <Award className="w-4 h-4 text-portfolio-accent" />
+                      </div>
+                      <span className="text-gray-300 font-['Fira_Code']">Colloquium 2024 Winner</span>
                     </div>
                   </div>
                 </div>
@@ -151,7 +159,7 @@ export default function AboutSection() {
           <button 
             onClick={() => {
               const link = document.createElement('a');
-              link.href = '#';
+              link.href = resumePDF;
               link.download = 'Vivek_Pillai_Resume.pdf';
               link.click();
             }}
