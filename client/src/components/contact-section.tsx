@@ -17,66 +17,107 @@ import { z } from 'zod';
 
 type ContactFormData = z.infer<typeof insertContactMessageSchema>;
 
-// 3D Globe Component with improved visualization
+// 3D Earth Globe Component with realistic features
 function Globe3D() {
   return (
     <div className="relative w-96 h-96 mx-auto">
-      {/* Outer energy rings */}
-      <div className="absolute inset-0 rounded-full border-2 border-portfolio-primary/40 animate-pulse"></div>
-      <div className="absolute inset-6 rounded-full border border-portfolio-accent/30 animate-pulse delay-300"></div>
-      <div className="absolute inset-12 rounded-full border border-portfolio-primary/20 animate-pulse delay-600"></div>
+      {/* Outer space atmosphere */}
+      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-900/20 via-blue-800/30 to-blue-900/20 blur-2xl animate-pulse"></div>
       
-      {/* Main globe sphere */}
-      <div className="absolute inset-16 rounded-full bg-gradient-to-br from-portfolio-primary/30 via-portfolio-secondary/50 to-portfolio-accent/20 backdrop-blur-sm border-2 border-portfolio-primary/50 animate-spin-slow shadow-2xl">
-        {/* Meridian lines */}
+      {/* Orbital rings */}
+      <div className="absolute inset-4 rounded-full border border-blue-400/20 animate-pulse"></div>
+      <div className="absolute inset-8 rounded-full border border-green-400/15 animate-pulse delay-500"></div>
+      <div className="absolute inset-12 rounded-full border border-blue-300/10 animate-pulse delay-1000"></div>
+      
+      {/* Main Earth sphere */}
+      <div className="absolute inset-16 rounded-full bg-gradient-to-br from-blue-500/40 via-blue-700/60 to-green-600/30 backdrop-blur-sm border-2 border-blue-400/60 animate-spin-slow shadow-2xl overflow-hidden">
+        {/* Earth's surface with continents */}
+        <div className="absolute inset-0 rounded-full">
+          {/* Oceans - Blue base */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600/50 via-blue-700/60 to-blue-800/40"></div>
+          
+          {/* Continental landmasses */}
+          {/* North America */}
+          <div className="absolute top-1/4 left-1/6 w-16 h-12 bg-green-600/60 rounded-full transform rotate-12 shadow-lg"></div>
+          <div className="absolute top-1/3 left-1/5 w-8 h-6 bg-green-700/50 rounded-full transform rotate-20"></div>
+          
+          {/* South America */}
+          <div className="absolute top-1/2 left-1/4 w-6 h-16 bg-green-600/60 rounded-full transform rotate-15 shadow-lg"></div>
+          
+          {/* Africa */}
+          <div className="absolute top-1/3 left-1/2 w-8 h-14 bg-green-700/60 rounded-full transform rotate-5 shadow-lg"></div>
+          
+          {/* Europe */}
+          <div className="absolute top-1/4 left-1/2 w-6 h-4 bg-green-600/50 rounded-full transform rotate-10"></div>
+          
+          {/* Asia */}
+          <div className="absolute top-1/4 right-1/4 w-14 h-10 bg-green-700/60 rounded-full transform rotate-0 shadow-lg"></div>
+          
+          {/* Australia */}
+          <div className="absolute bottom-1/3 right-1/3 w-6 h-4 bg-green-600/50 rounded-full transform rotate-15"></div>
+          
+          {/* Arctic ice cap */}
+          <div className="absolute top-0 left-1/2 w-20 h-10 bg-white/30 rounded-full transform -translate-x-1/2 blur-sm"></div>
+          
+          {/* Antarctic ice cap */}
+          <div className="absolute bottom-0 left-1/2 w-24 h-12 bg-white/30 rounded-full transform -translate-x-1/2 blur-sm"></div>
+        </div>
+        
+        {/* Latitude and longitude grid */}
         <div className="absolute inset-0 rounded-full overflow-hidden">
-          <div className="absolute top-0 left-1/2 w-0.5 h-full bg-portfolio-accent/40 transform -translate-x-1/2"></div>
-          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-portfolio-accent/40 transform -translate-y-1/2"></div>
-          <div className="absolute top-1/4 left-0 w-full h-0.5 bg-portfolio-primary/30"></div>
-          <div className="absolute top-3/4 left-0 w-full h-0.5 bg-portfolio-primary/30"></div>
-          <div className="absolute top-0 left-1/4 w-0.5 h-full bg-portfolio-primary/30"></div>
-          <div className="absolute top-0 left-3/4 w-0.5 h-full bg-portfolio-primary/30"></div>
+          <div className="absolute top-0 left-1/2 w-0.5 h-full bg-white/20 transform -translate-x-1/2"></div>
+          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-white/20 transform -translate-y-1/2"></div>
+          <div className="absolute top-1/4 left-0 w-full h-0.5 bg-white/15"></div>
+          <div className="absolute top-3/4 left-0 w-full h-0.5 bg-white/15"></div>
+          <div className="absolute top-0 left-1/4 w-0.5 h-full bg-white/15"></div>
+          <div className="absolute top-0 left-3/4 w-0.5 h-full bg-white/15"></div>
         </div>
         
-        {/* Continent-like shapes */}
-        <div className="absolute top-1/4 left-1/4 w-8 h-6 bg-portfolio-accent/40 rounded-full transform rotate-12"></div>
-        <div className="absolute top-2/3 right-1/4 w-10 h-4 bg-portfolio-primary/40 rounded-full transform -rotate-12"></div>
-        <div className="absolute top-1/2 left-1/3 w-6 h-8 bg-portfolio-accent/30 rounded-full transform rotate-45"></div>
-        <div className="absolute top-1/3 right-1/3 w-4 h-6 bg-portfolio-primary/30 rounded-full transform -rotate-30"></div>
+        {/* City lights / population centers */}
+        <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-yellow-400/80 rounded-full animate-pulse shadow-lg shadow-yellow-400/50"></div>
+        <div className="absolute top-2/5 left-1/2 w-2 h-2 bg-yellow-400/80 rounded-full animate-pulse delay-300 shadow-lg shadow-yellow-400/50"></div>
+        <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-yellow-400/80 rounded-full animate-pulse delay-700 shadow-lg shadow-yellow-400/50"></div>
+        <div className="absolute top-1/2 left-1/3 w-2 h-2 bg-yellow-400/80 rounded-full animate-pulse delay-1000 shadow-lg shadow-yellow-400/50"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-2 h-2 bg-yellow-400/80 rounded-full animate-pulse delay-1500 shadow-lg shadow-yellow-400/50"></div>
         
-        {/* Floating data points with glow */}
-        <div className="absolute top-1/3 left-1/4 w-3 h-3 bg-portfolio-accent rounded-full animate-pulse shadow-lg shadow-portfolio-accent/50"></div>
-        <div className="absolute top-2/3 left-3/4 w-3 h-3 bg-portfolio-primary rounded-full animate-pulse delay-300 shadow-lg shadow-portfolio-primary/50"></div>
-        <div className="absolute top-1/2 left-1/3 w-3 h-3 bg-portfolio-accent rounded-full animate-pulse delay-700 shadow-lg shadow-portfolio-accent/50"></div>
-        <div className="absolute top-1/4 left-2/3 w-3 h-3 bg-portfolio-primary rounded-full animate-pulse delay-1000 shadow-lg shadow-portfolio-primary/50"></div>
+        {/* Cloud formations */}
+        <div className="absolute top-1/3 left-1/3 w-12 h-4 bg-white/20 rounded-full blur-sm animate-pulse"></div>
+        <div className="absolute top-1/2 right-1/4 w-8 h-3 bg-white/20 rounded-full blur-sm animate-pulse delay-500"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-10 h-3 bg-white/20 rounded-full blur-sm animate-pulse delay-1000"></div>
         
-        {/* Inner glow */}
-        <div className="absolute inset-4 rounded-full bg-gradient-to-br from-portfolio-primary/10 to-portfolio-accent/10 blur-sm"></div>
+        {/* Atmospheric glow inner */}
+        <div className="absolute inset-2 rounded-full bg-gradient-to-br from-blue-400/10 to-green-400/10 blur-md"></div>
       </div>
       
-      {/* Orbiting satellites with trails */}
+      {/* Orbiting satellites */}
       <div className="absolute inset-0 animate-spin-slow">
-        <div className="absolute -top-3 left-1/2 w-6 h-6 transform -translate-x-1/2">
-          <div className="w-full h-full bg-portfolio-accent/80 rounded-full shadow-lg shadow-portfolio-accent/50"></div>
-          <div className="absolute top-1/2 left-1/2 w-1 h-20 bg-gradient-to-b from-portfolio-accent/40 to-transparent transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute -top-4 left-1/2 w-8 h-8 transform -translate-x-1/2">
+          <div className="w-full h-full bg-gradient-to-r from-gray-300 to-gray-400 rounded-sm shadow-lg"></div>
+          <div className="absolute top-1/2 left-1/2 w-1 h-16 bg-gradient-to-b from-blue-400/60 to-transparent transform -translate-x-1/2 -translate-y-1/2"></div>
         </div>
-        <div className="absolute -bottom-3 left-1/2 w-6 h-6 transform -translate-x-1/2">
-          <div className="w-full h-full bg-portfolio-primary/80 rounded-full shadow-lg shadow-portfolio-primary/50"></div>
-          <div className="absolute top-1/2 left-1/2 w-1 h-20 bg-gradient-to-t from-portfolio-primary/40 to-transparent transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute -bottom-4 left-1/2 w-8 h-8 transform -translate-x-1/2">
+          <div className="w-full h-full bg-gradient-to-r from-gray-400 to-gray-500 rounded-sm shadow-lg"></div>
+          <div className="absolute top-1/2 left-1/2 w-1 h-16 bg-gradient-to-t from-green-400/60 to-transparent transform -translate-x-1/2 -translate-y-1/2"></div>
         </div>
       </div>
       
-      {/* Connection network lines */}
+      {/* Communication network */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 w-48 h-0.5 bg-gradient-to-r from-transparent via-portfolio-accent/60 to-transparent transform -translate-x-1/2 -translate-y-1/2 rotate-45 animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 w-48 h-0.5 bg-gradient-to-r from-transparent via-portfolio-primary/60 to-transparent transform -translate-x-1/2 -translate-y-1/2 -rotate-45 animate-pulse delay-500"></div>
-        <div className="absolute top-1/2 left-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-portfolio-accent/40 to-transparent transform -translate-x-1/2 -translate-y-1/2 rotate-12 animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-portfolio-primary/40 to-transparent transform -translate-x-1/2 -translate-y-1/2 -rotate-12 animate-pulse delay-1500"></div>
+        <div className="absolute top-1/2 left-1/2 w-40 h-0.5 bg-gradient-to-r from-transparent via-blue-400/60 to-transparent transform -translate-x-1/2 -translate-y-1/2 rotate-45 animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 w-40 h-0.5 bg-gradient-to-r from-transparent via-green-400/60 to-transparent transform -translate-x-1/2 -translate-y-1/2 -rotate-45 animate-pulse delay-500"></div>
+        <div className="absolute top-1/2 left-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-blue-300/40 to-transparent transform -translate-x-1/2 -translate-y-1/2 rotate-12 animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-green-300/40 to-transparent transform -translate-x-1/2 -translate-y-1/2 -rotate-12 animate-pulse delay-1500"></div>
       </div>
       
-      {/* Atmospheric glow */}
-      <div className="absolute inset-8 rounded-full bg-portfolio-primary/5 blur-xl animate-pulse"></div>
-      <div className="absolute inset-12 rounded-full bg-portfolio-accent/5 blur-lg animate-pulse delay-700"></div>
+      {/* Outer atmosphere glow */}
+      <div className="absolute inset-4 rounded-full bg-blue-400/10 blur-xl animate-pulse"></div>
+      <div className="absolute inset-8 rounded-full bg-green-400/5 blur-lg animate-pulse delay-700"></div>
+      
+      {/* Space debris/stars */}
+      <div className="absolute top-1/6 left-1/4 w-1 h-1 bg-white/60 rounded-full animate-ping"></div>
+      <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-white/60 rounded-full animate-ping delay-500"></div>
+      <div className="absolute top-1/2 left-1/6 w-1 h-1 bg-white/60 rounded-full animate-ping delay-1000"></div>
+      <div className="absolute bottom-1/4 right-1/3 w-1 h-1 bg-white/60 rounded-full animate-ping delay-1500"></div>
     </div>
   );
 }
