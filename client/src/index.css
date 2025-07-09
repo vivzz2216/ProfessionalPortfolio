@@ -268,6 +268,16 @@
     height: 2px;
     background: hsl(var(--portfolio-accent));
     border-radius: 50%;
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 6s linear infinite;
+  }
     animation: particle-float 15s linear infinite;
     box-shadow: 0 0 6px currentColor;
   }
@@ -374,7 +384,6 @@
     0% { left: -100%; }
     100% { left: 100%; }
   }
-}
 
 @layer utilities {
   .text-portfolio-primary {
