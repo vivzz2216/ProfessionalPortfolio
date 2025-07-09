@@ -68,8 +68,9 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-portfolio-neutral text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
+    background-color: hsl(var(--portfolio-neutral));
   }
 
   html {

@@ -4,12 +4,12 @@ import AboutSection from '@/components/about-section';
 import SkillsSection from '@/components/skills-section';
 import ProjectsSection from '@/components/projects-section';
 import ContactSection from '@/components/contact-section';
-import VisitorCounter from '@/components/visitor-counter';
+
 import AdvancedBackground from '@/components/advanced-background';
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative bg-portfolio-neutral">
       <AdvancedBackground />
       <Navigation />
       <main className="relative z-10">
@@ -19,7 +19,7 @@ export default function Portfolio() {
         <ProjectsSection />
         <ContactSection />
       </main>
-      <VisitorCounter />
+
       
       {/* Futuristic Footer */}
       <footer className="bg-portfolio-secondary border-t border-portfolio-primary/30 text-white py-12 relative overflow-hidden">

@@ -17,44 +17,66 @@ import { z } from 'zod';
 
 type ContactFormData = z.infer<typeof insertContactMessageSchema>;
 
-// 3D Globe Component
+// 3D Globe Component with improved visualization
 function Globe3D() {
   return (
-    <div className="relative w-80 h-80 mx-auto">
-      {/* Outer glow ring */}
-      <div className="absolute inset-0 rounded-full border-2 border-portfolio-primary/30 animate-pulse"></div>
-      <div className="absolute inset-4 rounded-full border border-portfolio-accent/20 animate-pulse delay-500"></div>
+    <div className="relative w-96 h-96 mx-auto">
+      {/* Outer energy rings */}
+      <div className="absolute inset-0 rounded-full border-2 border-portfolio-primary/40 animate-pulse"></div>
+      <div className="absolute inset-6 rounded-full border border-portfolio-accent/30 animate-pulse delay-300"></div>
+      <div className="absolute inset-12 rounded-full border border-portfolio-primary/20 animate-pulse delay-600"></div>
       
-      {/* Main globe */}
-      <div className="absolute inset-8 rounded-full bg-gradient-to-br from-portfolio-primary/20 via-portfolio-accent/10 to-portfolio-primary/20 backdrop-blur-sm border border-portfolio-primary/40 animate-spin-slow">
-        {/* Grid lines */}
+      {/* Main globe sphere */}
+      <div className="absolute inset-16 rounded-full bg-gradient-to-br from-portfolio-primary/30 via-portfolio-secondary/50 to-portfolio-accent/20 backdrop-blur-sm border-2 border-portfolio-primary/50 animate-spin-slow shadow-2xl">
+        {/* Meridian lines */}
         <div className="absolute inset-0 rounded-full overflow-hidden">
-          <div className="absolute top-0 left-1/2 w-px h-full bg-portfolio-accent/30 transform -translate-x-1/2"></div>
-          <div className="absolute top-1/2 left-0 w-full h-px bg-portfolio-accent/30 transform -translate-y-1/2"></div>
-          <div className="absolute top-1/4 left-0 w-full h-px bg-portfolio-primary/20"></div>
-          <div className="absolute top-3/4 left-0 w-full h-px bg-portfolio-primary/20"></div>
-          <div className="absolute top-0 left-1/4 w-px h-full bg-portfolio-primary/20"></div>
-          <div className="absolute top-0 left-3/4 w-px h-full bg-portfolio-primary/20"></div>
+          <div className="absolute top-0 left-1/2 w-0.5 h-full bg-portfolio-accent/40 transform -translate-x-1/2"></div>
+          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-portfolio-accent/40 transform -translate-y-1/2"></div>
+          <div className="absolute top-1/4 left-0 w-full h-0.5 bg-portfolio-primary/30"></div>
+          <div className="absolute top-3/4 left-0 w-full h-0.5 bg-portfolio-primary/30"></div>
+          <div className="absolute top-0 left-1/4 w-0.5 h-full bg-portfolio-primary/30"></div>
+          <div className="absolute top-0 left-3/4 w-0.5 h-full bg-portfolio-primary/30"></div>
         </div>
         
-        {/* Floating data points */}
-        <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-portfolio-accent rounded-full animate-pulse"></div>
-        <div className="absolute top-2/3 left-3/4 w-2 h-2 bg-portfolio-primary rounded-full animate-pulse delay-300"></div>
-        <div className="absolute top-1/2 left-1/3 w-2 h-2 bg-portfolio-accent rounded-full animate-pulse delay-700"></div>
-        <div className="absolute top-1/4 left-2/3 w-2 h-2 bg-portfolio-primary rounded-full animate-pulse delay-1000"></div>
+        {/* Continent-like shapes */}
+        <div className="absolute top-1/4 left-1/4 w-8 h-6 bg-portfolio-accent/40 rounded-full transform rotate-12"></div>
+        <div className="absolute top-2/3 right-1/4 w-10 h-4 bg-portfolio-primary/40 rounded-full transform -rotate-12"></div>
+        <div className="absolute top-1/2 left-1/3 w-6 h-8 bg-portfolio-accent/30 rounded-full transform rotate-45"></div>
+        <div className="absolute top-1/3 right-1/3 w-4 h-6 bg-portfolio-primary/30 rounded-full transform -rotate-30"></div>
+        
+        {/* Floating data points with glow */}
+        <div className="absolute top-1/3 left-1/4 w-3 h-3 bg-portfolio-accent rounded-full animate-pulse shadow-lg shadow-portfolio-accent/50"></div>
+        <div className="absolute top-2/3 left-3/4 w-3 h-3 bg-portfolio-primary rounded-full animate-pulse delay-300 shadow-lg shadow-portfolio-primary/50"></div>
+        <div className="absolute top-1/2 left-1/3 w-3 h-3 bg-portfolio-accent rounded-full animate-pulse delay-700 shadow-lg shadow-portfolio-accent/50"></div>
+        <div className="absolute top-1/4 left-2/3 w-3 h-3 bg-portfolio-primary rounded-full animate-pulse delay-1000 shadow-lg shadow-portfolio-primary/50"></div>
+        
+        {/* Inner glow */}
+        <div className="absolute inset-4 rounded-full bg-gradient-to-br from-portfolio-primary/10 to-portfolio-accent/10 blur-sm"></div>
       </div>
       
-      {/* Orbiting satellites */}
+      {/* Orbiting satellites with trails */}
       <div className="absolute inset-0 animate-spin-slow">
-        <div className="absolute -top-2 left-1/2 w-4 h-4 bg-portfolio-accent/70 rounded-full transform -translate-x-1/2"></div>
-        <div className="absolute -bottom-2 left-1/2 w-4 h-4 bg-portfolio-primary/70 rounded-full transform -translate-x-1/2"></div>
+        <div className="absolute -top-3 left-1/2 w-6 h-6 transform -translate-x-1/2">
+          <div className="w-full h-full bg-portfolio-accent/80 rounded-full shadow-lg shadow-portfolio-accent/50"></div>
+          <div className="absolute top-1/2 left-1/2 w-1 h-20 bg-gradient-to-b from-portfolio-accent/40 to-transparent transform -translate-x-1/2 -translate-y-1/2"></div>
+        </div>
+        <div className="absolute -bottom-3 left-1/2 w-6 h-6 transform -translate-x-1/2">
+          <div className="w-full h-full bg-portfolio-primary/80 rounded-full shadow-lg shadow-portfolio-primary/50"></div>
+          <div className="absolute top-1/2 left-1/2 w-1 h-20 bg-gradient-to-t from-portfolio-primary/40 to-transparent transform -translate-x-1/2 -translate-y-1/2"></div>
+        </div>
       </div>
       
-      {/* Connection lines */}
+      {/* Connection network lines */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 w-40 h-px bg-gradient-to-r from-transparent via-portfolio-accent/50 to-transparent transform -translate-x-1/2 -translate-y-1/2 rotate-45 animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 w-40 h-px bg-gradient-to-r from-transparent via-portfolio-primary/50 to-transparent transform -translate-x-1/2 -translate-y-1/2 -rotate-45 animate-pulse delay-500"></div>
+        <div className="absolute top-1/2 left-1/2 w-48 h-0.5 bg-gradient-to-r from-transparent via-portfolio-accent/60 to-transparent transform -translate-x-1/2 -translate-y-1/2 rotate-45 animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 w-48 h-0.5 bg-gradient-to-r from-transparent via-portfolio-primary/60 to-transparent transform -translate-x-1/2 -translate-y-1/2 -rotate-45 animate-pulse delay-500"></div>
+        <div className="absolute top-1/2 left-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-portfolio-accent/40 to-transparent transform -translate-x-1/2 -translate-y-1/2 rotate-12 animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-portfolio-primary/40 to-transparent transform -translate-x-1/2 -translate-y-1/2 -rotate-12 animate-pulse delay-1500"></div>
       </div>
+      
+      {/* Atmospheric glow */}
+      <div className="absolute inset-8 rounded-full bg-portfolio-primary/5 blur-xl animate-pulse"></div>
+      <div className="absolute inset-12 rounded-full bg-portfolio-accent/5 blur-lg animate-pulse delay-700"></div>
     </div>
   );
 }
