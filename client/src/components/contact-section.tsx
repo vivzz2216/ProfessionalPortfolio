@@ -1,279 +1,293 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Send, Zap } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
-import { useMutation } from '@tanstack/react-query';
-import { apiRequest } from '@/lib/queryClient';
-import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { Mail, Phone, MapPin, Send, Globe, Zap, Linkedin } from 'lucide-react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { apiRequest } from '@/lib/queryClient';
+import { useToast } from '@/hooks/use-toast';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { insertContactMessageSchema } from '@shared/schema';
+import { z } from 'zod';
 
-interface ContactFormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
+type ContactFormData = z.infer<typeof insertContactMessageSchema>;
+
+// 3D Globe Component
+function Globe3D() {
+  return (
+    <div className="relative w-80 h-80 mx-auto">
+      {/* Outer glow ring */}
+      <div className="absolute inset-0 rounded-full border-2 border-portfolio-primary/30 animate-pulse"></div>
+      <div className="absolute inset-4 rounded-full border border-portfolio-accent/20 animate-pulse delay-500"></div>
+      
+      {/* Main globe */}
+      <div className="absolute inset-8 rounded-full bg-gradient-to-br from-portfolio-primary/20 via-portfolio-accent/10 to-portfolio-primary/20 backdrop-blur-sm border border-portfolio-primary/40 animate-spin-slow">
+        {/* Grid lines */}
+        <div className="absolute inset-0 rounded-full overflow-hidden">
+          <div className="absolute top-0 left-1/2 w-px h-full bg-portfolio-accent/30 transform -translate-x-1/2"></div>
+          <div className="absolute top-1/2 left-0 w-full h-px bg-portfolio-accent/30 transform -translate-y-1/2"></div>
+          <div className="absolute top-1/4 left-0 w-full h-px bg-portfolio-primary/20"></div>
+          <div className="absolute top-3/4 left-0 w-full h-px bg-portfolio-primary/20"></div>
+          <div className="absolute top-0 left-1/4 w-px h-full bg-portfolio-primary/20"></div>
+          <div className="absolute top-0 left-3/4 w-px h-full bg-portfolio-primary/20"></div>
+        </div>
+        
+        {/* Floating data points */}
+        <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-portfolio-accent rounded-full animate-pulse"></div>
+        <div className="absolute top-2/3 left-3/4 w-2 h-2 bg-portfolio-primary rounded-full animate-pulse delay-300"></div>
+        <div className="absolute top-1/2 left-1/3 w-2 h-2 bg-portfolio-accent rounded-full animate-pulse delay-700"></div>
+        <div className="absolute top-1/4 left-2/3 w-2 h-2 bg-portfolio-primary rounded-full animate-pulse delay-1000"></div>
+      </div>
+      
+      {/* Orbiting satellites */}
+      <div className="absolute inset-0 animate-spin-slow">
+        <div className="absolute -top-2 left-1/2 w-4 h-4 bg-portfolio-accent/70 rounded-full transform -translate-x-1/2"></div>
+        <div className="absolute -bottom-2 left-1/2 w-4 h-4 bg-portfolio-primary/70 rounded-full transform -translate-x-1/2"></div>
+      </div>
+      
+      {/* Connection lines */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/2 left-1/2 w-40 h-px bg-gradient-to-r from-transparent via-portfolio-accent/50 to-transparent transform -translate-x-1/2 -translate-y-1/2 rotate-45 animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 w-40 h-px bg-gradient-to-r from-transparent via-portfolio-primary/50 to-transparent transform -translate-x-1/2 -translate-y-1/2 -rotate-45 animate-pulse delay-500"></div>
+      </div>
+    </div>
+  );
 }
 
 export default function ContactSection() {
-  const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation();
-  const { ref: infoRef, isVisible: infoVisible } = useScrollAnimation({ threshold: 0.3 });
-  const { ref: formRef, isVisible: formVisible } = useScrollAnimation({ threshold: 0.2 });
+  const queryClient = useQueryClient();
   const { toast } = useToast();
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation();
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { ref: globeRef, isVisible: globeVisible } = useScrollAnimation({ threshold: 0.3 });
 
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>({
+    resolver: zodResolver(insertContactMessageSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    }
   });
 
   const contactMutation = useMutation({
     mutationFn: (data: ContactFormData) => apiRequest('POST', '/api/contact', data),
     onSuccess: () => {
       toast({
-        title: "Message transmitted successfully!",
-        description: "Your message has been received. I'll respond soon.",
+        title: "Message sent successfully!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      reset();
     },
     onError: (error: any) => {
       toast({
-        title: "Transmission failed",
-        description: error.message || "Please try again later.",
+        title: "Error sending message",
+        description: error.message || "Something went wrong. Please try again.",
         variant: "destructive",
       });
-    },
+    }
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+  const onSubmit = (data: ContactFormData) => {
+    contactMutation.mutate(data);
   };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Basic validation
-    if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
-      toast({
-        title: "Validation Error",
-        description: "Please fill in all fields.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      toast({
-        title: "Validation Error",
-        description: "Please enter a valid email address.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    contactMutation.mutate(formData);
-  };
-
-  const contactInfo = [
-    { icon: Mail, text: 'vivek.pillai@dev.com', href: 'mailto:vivek.pillai@dev.com' },
-    { icon: Phone, text: '+91 (999) 888-7777', href: 'tel:+919998887777' },
-    { icon: MapPin, text: 'Mumbai, India', href: '#' }
-  ];
-
-  const socialLinks = [
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Twitter, href: '#', label: 'Twitter' }
-  ];
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 bg-portfolio-neutral relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="particle-system">
-          {Array.from({ length: 15 }, (_, i) => (
-            <div 
-              key={i}
-              className="particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 15}s`,
-                animationDuration: `${20 + Math.random() * 10}s`
-              }}
-            />
-          ))}
-        </div>
+    <section ref={sectionRef} id="contact" className="py-20 bg-gradient-to-br from-portfolio-secondary via-portfolio-neutral to-portfolio-secondary relative overflow-hidden">
+      {/* Advanced Background Effects */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 right-10 w-96 h-96 bg-portfolio-primary/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-portfolio-accent/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
+      
+      {/* Floating particles */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-portfolio-accent rounded-full animate-ping"></div>
+        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-portfolio-primary rounded-full animate-ping delay-500"></div>
+        <div className="absolute top-1/2 left-1/3 w-1 h-1 bg-portfolio-accent rounded-full animate-ping delay-1000"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className={`text-4xl md:text-5xl font-bold text-white mb-4 transition-all duration-700 font-['Orbitron'] ${
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-20">
+          <h2 className={`text-5xl md:text-6xl font-bold text-white mb-6 transition-all duration-1000 font-['Orbitron'] ${
             sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <span className="glow-text">ESTABLISH CONNECTION</span>
+            <span className="glow-text">GET IN TOUCH</span>
           </h2>
           <div className={`section-divider transition-all duration-700 delay-200 ${
             sectionVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
           }`} />
-          <p className={`text-lg text-gray-300 mt-6 transition-all duration-700 delay-300 font-['Inter'] ${
+          <p className={`text-xl text-gray-300 mt-6 font-['Inter'] transition-all duration-1000 delay-300 ${
             sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            Ready to build the future together? Let's start the conversation
+            Ready to collaborate? Let's connect and build something amazing together
           </p>
         </div>
-        
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div ref={infoRef} className={`transition-all duration-700 ${
-            infoVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* 3D Globe Visualization */}
+          <div ref={globeRef} className={`text-center transition-all duration-1000 delay-400 ${
+            globeVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
           }`}>
-            <div className="hologram-effect p-8 rounded-xl">
-              <h3 className="text-2xl font-semibold text-portfolio-accent mb-8 font-['Orbitron'] flex items-center">
-                <Zap className="mr-3 w-6 h-6" />
-                Contact Channels
-              </h3>
-              <div className="space-y-6">
-                {contactInfo.map((item, index) => (
-                  <a
-                    key={index}
-                    href={item.href}
-                    className="flex items-center group hover:text-portfolio-accent transition-all duration-300 p-3 rounded-lg hover:bg-portfolio-primary/10"
-                  >
-                    <div className="w-12 h-12 bg-portfolio-primary/20 rounded-full flex items-center justify-center mr-4 group-hover:bg-portfolio-accent/20 transition-all duration-300">
-                      <item.icon className="text-portfolio-primary group-hover:text-portfolio-accent" size={20} />
+            <Globe3D />
+            
+            {/* Contact Information Cards */}
+            <div className="mt-12 space-y-6">
+              <div className="hologram-effect p-6 rounded-xl">
+                <h3 className="text-2xl font-bold text-portfolio-accent mb-6 font-['Orbitron']">
+                  Connect With Me
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-center space-x-4">
+                    <div className="w-10 h-10 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
+                      <Mail className="w-5 h-5 text-portfolio-accent" />
                     </div>
-                    <span className="text-gray-300 group-hover:text-portfolio-accent transition-colors duration-300 font-['Fira_Code']">
-                      {item.text}
-                    </span>
-                  </a>
-                ))}
-              </div>
-              
-              {/* Social Links */}
-              <div className="mt-12">
-                <h4 className="text-lg font-semibold text-portfolio-accent mb-6 font-['Orbitron']">
-                  Social Networks
-                </h4>
-                <div className="flex space-x-4">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.href}
-                      aria-label={social.label}
-                      className="w-12 h-12 bg-portfolio-primary/20 rounded-full flex items-center justify-center text-portfolio-primary hover:text-portfolio-accent hover:bg-portfolio-accent/20 transition-all duration-300 hover:scale-110 transform"
+                    <span className="text-gray-300 font-['Fira_Code']">pillaivivek16@gmail.com</span>
+                  </div>
+                  <div className="flex items-center justify-center space-x-4">
+                    <div className="w-10 h-10 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
+                      <Phone className="w-5 h-5 text-portfolio-primary" />
+                    </div>
+                    <span className="text-gray-300 font-['Fira_Code']">+91 7249292743</span>
+                  </div>
+                  <div className="flex items-center justify-center space-x-4">
+                    <div className="w-10 h-10 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
+                      <MapPin className="w-5 h-5 text-portfolio-accent" />
+                    </div>
+                    <span className="text-gray-300 font-['Fira_Code']">Mumbai, India</span>
+                  </div>
+                  <div className="flex items-center justify-center space-x-4">
+                    <div className="w-10 h-10 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
+                      <Linkedin className="w-5 h-5 text-portfolio-primary" />
+                    </div>
+                    <a 
+                      href="https://linkedin.com/in/vivek-pillai-281a68253" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-gray-300 font-['Fira_Code'] hover:text-portfolio-accent transition-colors"
                     >
-                      <social.icon size={20} />
+                      LinkedIn Profile
                     </a>
-                  ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Status Indicator */}
-              <div className="mt-8 flex items-center space-x-3">
-                <div className="w-3 h-3 bg-portfolio-accent rounded-full animate-pulse"></div>
-                <span className="text-sm font-['Fira_Code'] text-portfolio-accent">
-                  STATUS: AVAILABLE FOR PROJECTS
-                </span>
+              {/* Status badges */}
+              <div className="flex flex-wrap justify-center gap-3">
+                <Badge variant="outline" className="bg-portfolio-primary/20 text-portfolio-accent border-portfolio-primary/40">
+                  <Zap className="w-4 h-4 mr-2" />
+                  Available for Projects
+                </Badge>
+                <Badge variant="outline" className="bg-portfolio-accent/20 text-portfolio-primary border-portfolio-accent/40">
+                  <Globe className="w-4 h-4 mr-2" />
+                  Remote Friendly
+                </Badge>
               </div>
             </div>
           </div>
-          
-          {/* Contact Form */}
-          <div ref={formRef} className={`transition-all duration-700 delay-200 ${
+
+          {/* Enhanced Contact Form */}
+          <div ref={formRef} className={`transition-all duration-1000 delay-600 ${
             formVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
           }`}>
-            <div className="hologram-effect p-8 rounded-xl">
-              <h3 className="text-2xl font-semibold text-portfolio-accent mb-8 font-['Orbitron'] flex items-center">
-                <Send className="mr-3 w-6 h-6" />
-                Send Message
-              </h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2 font-['Fira_Code']">
-                    Full Name
-                  </Label>
-                  <Input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full bg-portfolio-secondary/50 border-portfolio-primary/30 text-white focus:ring-2 focus:ring-portfolio-accent focus:border-portfolio-accent transition-all duration-300 font-['Inter']"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2 font-['Fira_Code']">
-                    Email Address
-                  </Label>
-                  <Input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full bg-portfolio-secondary/50 border-portfolio-primary/30 text-white focus:ring-2 focus:ring-portfolio-accent focus:border-portfolio-accent transition-all duration-300 font-['Inter']"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2 font-['Fira_Code']">
-                    Subject
-                  </Label>
-                  <Input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full bg-portfolio-secondary/50 border-portfolio-primary/30 text-white focus:ring-2 focus:ring-portfolio-accent focus:border-portfolio-accent transition-all duration-300 font-['Inter']"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2 font-['Fira_Code']">
-                    Message
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full bg-portfolio-secondary/50 border-portfolio-primary/30 text-white focus:ring-2 focus:ring-portfolio-accent focus:border-portfolio-accent transition-all duration-300 resize-none font-['Inter']"
-                  />
-                </div>
-                
-                <Button
-                  type="submit"
-                  disabled={contactMutation.isPending}
-                  className="w-full neon-border px-8 py-4 bg-transparent text-white font-['Orbitron'] font-semibold tracking-wider uppercase hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <span className="flex items-center justify-center">
-                    {contactMutation.isPending ? (
-                      <>
-                        <div className="animate-spin mr-2 w-4 h-4 border-2 border-white border-t-transparent rounded-full"></div>
-                        TRANSMITTING...
-                      </>
-                    ) : (
-                      <>
-                        TRANSMIT MESSAGE
-                        <Send className="ml-3 w-4 h-4" />
-                      </>
+            <Card className="hologram-effect border-portfolio-primary/30 bg-portfolio-secondary/20 backdrop-blur-lg">
+              <CardHeader className="text-center">
+                <CardTitle className="text-3xl font-bold text-white font-['Orbitron']">
+                  Send a Message
+                </CardTitle>
+                <CardDescription className="text-gray-300 font-['Inter']">
+                  Let's discuss your project or opportunity
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-portfolio-accent font-['Orbitron']">
+                        Full Name
+                      </label>
+                      <Input
+                        {...register('name')}
+                        className="bg-portfolio-secondary/50 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20"
+                        placeholder="Your name"
+                      />
+                      {errors.name && (
+                        <p className="text-red-400 text-sm font-['Fira_Code']">{errors.name.message}</p>
+                      )}
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-portfolio-accent font-['Orbitron']">
+                        Email Address
+                      </label>
+                      <Input
+                        {...register('email')}
+                        type="email"
+                        className="bg-portfolio-secondary/50 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20"
+                        placeholder="your@email.com"
+                      />
+                      {errors.email && (
+                        <p className="text-red-400 text-sm font-['Fira_Code']">{errors.email.message}</p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-portfolio-accent font-['Orbitron']">
+                      Subject
+                    </label>
+                    <Input
+                      {...register('subject')}
+                      className="bg-portfolio-secondary/50 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20"
+                      placeholder="Project collaboration, job opportunity, etc."
+                    />
+                    {errors.subject && (
+                      <p className="text-red-400 text-sm font-['Fira_Code']">{errors.subject.message}</p>
                     )}
-                  </span>
-                </Button>
-              </form>
-            </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-portfolio-accent font-['Orbitron']">
+                      Message
+                    </label>
+                    <Textarea
+                      {...register('message')}
+                      rows={6}
+                      className="bg-portfolio-secondary/50 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 resize-none"
+                      placeholder="Tell me about your project, requirements, or how we can work together..."
+                    />
+                    {errors.message && (
+                      <p className="text-red-400 text-sm font-['Fira_Code']">{errors.message.message}</p>
+                    )}
+                  </div>
+
+                  <Separator className="bg-portfolio-primary/30" />
+
+                  <Button
+                    type="submit"
+                    disabled={contactMutation.isPending}
+                    className="w-full bg-gradient-to-r from-portfolio-primary to-portfolio-accent hover:from-portfolio-accent hover:to-portfolio-primary text-white font-['Orbitron'] font-semibold tracking-wider uppercase py-3 rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50"
+                  >
+                    {contactMutation.isPending ? (
+                      <div className="flex items-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Sending...
+                      </div>
+                    ) : (
+                      <div className="flex items-center">
+                        <Send className="w-5 h-5 mr-2" />
+                        Send Message
+                      </div>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

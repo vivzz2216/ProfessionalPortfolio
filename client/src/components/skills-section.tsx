@@ -70,7 +70,7 @@ export default function SkillsSection() {
   ];
 
   return (
-    <section ref={sectionRef} id="skills" className="py-20 bg-gradient-to-br from-portfolio-neutral via-portfolio-secondary to-portfolio-neutral relative overflow-hidden">
+    <section ref={sectionRef} id="skills" className="py-20 bg-gradient-to-br from-portfolio-secondary via-portfolio-secondary to-portfolio-neutral relative overflow-hidden">
       {/* Background Animation */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-20 w-64 h-64 bg-portfolio-primary/30 rounded-full blur-3xl animate-pulse"></div>
@@ -82,7 +82,7 @@ export default function SkillsSection() {
           <h2 className={`text-5xl md:text-6xl font-bold text-white mb-6 transition-all duration-1000 font-['Orbitron'] ${
             sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <span className="glow-text">TECHNICAL EXPERTISE</span>
+            <span className="glow-text">TECHNICAL SKILLS</span>
           </h2>
           <div className={`section-divider transition-all duration-700 delay-200 ${
             sectionVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'

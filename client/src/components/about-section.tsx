@@ -8,7 +8,7 @@ export default function AboutSection() {
   const { ref: summaryRef, isVisible: summaryVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-br from-portfolio-secondary via-portfolio-neutral to-portfolio-secondary relative overflow-hidden">
+    <section id="about" className="py-20 bg-gradient-to-br from-portfolio-secondary via-portfolio-secondary to-portfolio-neutral relative overflow-hidden">
       {/* Advanced Background Animation */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-72 h-72 bg-portfolio-primary/20 rounded-full blur-3xl animate-pulse"></div>
