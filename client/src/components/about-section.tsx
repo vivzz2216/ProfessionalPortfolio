@@ -64,9 +64,9 @@ export default function AboutSection() {
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
                       <div className="w-8 h-8 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
-                        <span className="text-portfolio-accent text-sm font-bold">20</span>
+                        <Globe className="w-4 h-4 text-portfolio-accent" />
                       </div>
-                      <span className="text-gray-300 font-['Fira_Code']">Years Old</span>
+                      <span className="text-gray-300 font-['Fira_Code']">Mumbai, India</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <GraduationCap className="w-5 h-5 text-portfolio-primary" />
