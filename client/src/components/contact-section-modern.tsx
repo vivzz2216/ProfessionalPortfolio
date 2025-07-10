@@ -7,18 +7,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { insertContactMessageSchema, type InsertContactMessage } from '@shared/schema';
+import { contactFormSchema, type ContactFormData } from '@shared/schema';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Phone, MapPin, Send, Sparkles, Zap } from 'lucide-react';
 
-type ContactFormData = {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-};
+
 
 export default function ContactSection() {
   const { ref, isVisible } = useScrollAnimation();
@@ -26,7 +21,7 @@ export default function ContactSection() {
   const queryClient = useQueryClient();
   
   const form = useForm<ContactFormData>({
-    resolver: zodResolver(insertContactMessageSchema),
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: '',
       email: '',
@@ -43,7 +38,7 @@ export default function ContactSection() {
         description: "I'll get back to you as soon as possible.",
       });
       form.reset();
-      queryClient.invalidateQueries({ queryKey: ['/api/contact-messages'] });
+      // No need to invalidate queries since we're using email now
     },
     onError: (error) => {
       toast({
