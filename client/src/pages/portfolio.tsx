@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Navigation from '@/components/navigation';
 import HeroSection from '@/components/hero-section';
 import AboutSection from '@/components/about-section';
-import SkillsSection from '@/components/skills-section-creative';
+import SkillsSection from '@/components/skills-section-ultimate';
 import ProjectsSection from '@/components/projects-section-creative';
 import ContactSection from '@/components/contact-section-royal';
 import LoadingScreen from '@/components/loading-screen-creative';

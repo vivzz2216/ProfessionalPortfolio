@@ -112,7 +112,7 @@ export default function ContactSection() {
                   repeat: Infinity,
                   ease: "linear"
                 }}
-                className="w-96 h-96 mx-auto lg:mx-0 mb-8 relative"
+                className="w-full h-96 mx-auto lg:mx-0 mb-8 relative max-w-md"
               >
                 <img 
                   src={globeImage} 
@@ -180,10 +180,12 @@ export default function ContactSection() {
           <div ref={formRef} className={`transition-all duration-1000 delay-600 ${
             formVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
           }`}>
-            <Card className="bg-gradient-to-br from-portfolio-secondary/40 to-portfolio-neutral/20 backdrop-blur-lg border-portfolio-primary/40 shadow-2xl">
+            <Card className="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-lg border-blue-500/30 shadow-2xl overflow-hidden">
               <CardHeader className="text-center">
-                <CardTitle className="text-3xl font-bold text-white font-['Cinzel']">
-                  Send Royal Message
+                <CardTitle className="text-3xl font-bold font-['Cinzel']">
+                  <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent glow-text-blue">
+                    Get In Touch
+                  </span>
                 </CardTitle>
                 <CardDescription className="text-gray-300 text-lg font-['Cormorant_Garamond']">
                   Share your project details and let's create something magnificent
@@ -236,7 +238,7 @@ export default function ContactSection() {
                         <Input
                           id="name"
                           {...form.register('name')}
-                          className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond'] transition-all duration-300"
+                          className="bg-slate-800/50 border-blue-500/30 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400/20 font-['Cormorant_Garamond'] transition-all duration-300"
                           placeholder="Enter your full name"
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-portfolio-primary/10 to-portfolio-accent/10 rounded-md opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
@@ -273,7 +275,7 @@ export default function ContactSection() {
                           id="email"
                           type="email"
                           {...form.register('email')}
-                          className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond'] transition-all duration-300"
+                          className="bg-slate-800/50 border-blue-500/30 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400/20 font-['Cormorant_Garamond'] transition-all duration-300"
                           placeholder="your.email@example.com"
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-portfolio-accent/10 to-portfolio-primary/10 rounded-md opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
@@ -313,7 +315,7 @@ export default function ContactSection() {
                       <Input
                         id="subject"
                         {...form.register('subject')}
-                        className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond'] transition-all duration-300"
+                        className="bg-slate-800/50 border-blue-500/30 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400/20 font-['Cormorant_Garamond'] transition-all duration-300"
                         placeholder="Brief description of your project"
                       />
                       <div className="absolute inset-0 bg-gradient-to-r from-portfolio-accent/10 to-portfolio-primary/10 rounded-md opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
@@ -353,7 +355,7 @@ export default function ContactSection() {
                         id="message"
                         {...form.register('message')}
                         rows={6}
-                        className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 resize-none font-['Cormorant_Garamond'] transition-all duration-300"
+                        className="bg-slate-800/50 border-blue-500/30 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400/20 resize-none font-['Cormorant_Garamond'] transition-all duration-300"
                         placeholder="Tell me about your project, requirements, timeline, and budget..."
                       />
                       <div className="absolute inset-0 bg-gradient-to-r from-portfolio-primary/10 to-portfolio-accent/10 rounded-md opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
@@ -376,7 +378,7 @@ export default function ContactSection() {
                     <Button
                       type="submit"
                       disabled={contactMutation.isPending}
-                      className="w-full bg-gradient-to-r from-portfolio-primary to-portfolio-accent hover:from-portfolio-accent hover:to-portfolio-primary text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 font-['Cinzel'] text-lg disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
+                      className="w-full bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 font-['Cinzel'] text-lg disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-portfolio-accent/20 to-portfolio-primary/20 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
@@ -387,7 +389,7 @@ export default function ContactSection() {
                               transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                               className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                             />
-                            <span>Sending Royal Message...</span>
+                            <span>Sending Message...</span>
                           </div>
                         ) : (
                           <div className="flex items-center justify-center space-x-2">
@@ -400,7 +402,7 @@ export default function ContactSection() {
                             >
                               <Send className="w-5 h-5" />
                             </motion.div>
-                            <span>Send Royal Message</span>
+                            <span>Send Message</span>
                             <motion.div
                               animate={{ 
                                 scale: [1, 1.2, 1],

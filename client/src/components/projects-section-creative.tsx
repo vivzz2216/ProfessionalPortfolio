@@ -168,7 +168,7 @@ export default function ProjectsSection() {
             }}
             className="relative inline-block"
           >
-            <h2 className="text-6xl md:text-8xl font-bold text-white mb-6 font-['Cinzel'] relative z-10">
+            <h2 className="text-6xl md:text-8xl font-bold mb-6 font-['Cinzel'] relative z-10">
               <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent glow-text-blue">
                 Project Showcase
               </span>
