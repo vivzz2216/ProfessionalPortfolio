@@ -24,12 +24,17 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-20">
-          <h2 className={`text-5xl md:text-6xl font-bold text-white mb-6 transition-all duration-1000 font-['Cinzel'] ${
+          <h2 className={`text-6xl md:text-7xl font-bold text-white mb-6 transition-all duration-1000 font-['Cinzel'] ${
             sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">DEVELOPER PROFILE</span>
+            <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">About Me</span>
           </h2>
-          <div className={`section-divider transition-all duration-700 delay-200 ${
+          <p className={`text-xl text-gray-300 max-w-3xl mx-auto font-['Cormorant_Garamond'] transition-all duration-700 delay-300 ${
+            sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            Passionate developer crafting innovative solutions with modern technologies
+          </p>
+          <div className={`w-24 h-1 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto mt-4 rounded-full transition-all duration-700 delay-500 ${
             sectionVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
           }`} />
         </div>

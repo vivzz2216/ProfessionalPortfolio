@@ -52,9 +52,9 @@ export default function FoxLogo({ className = "w-8 h-8" }: { className?: string 
       {/* Gradient Definition */}
       <defs>
         <linearGradient id="foxGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FF6B35" />
-          <stop offset="50%" stopColor="#FF8E3C" />
-          <stop offset="100%" stopColor="#FF9500" />
+          <stop offset="0%" stopColor="#3b82f6" />
+          <stop offset="50%" stopColor="#60a5fa" />
+          <stop offset="100%" stopColor="#1d4ed8" />
         </linearGradient>
       </defs>
     </svg>

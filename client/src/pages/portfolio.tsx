@@ -5,7 +5,7 @@ import AboutSection from '@/components/about-section';
 import SkillsSection from '@/components/skills-section-compact';
 import ProjectsSection from '@/components/projects-section-creative';
 import ContactSection from '@/components/contact-section-modern';
-import LoadingScreen from '@/components/loading-screen-starfield';
+import LoadingScreen from '@/components/loading-screen-3d';
 import Footer from '@/components/footer';
 import AdvancedBackground from '@/components/advanced-background';
 
