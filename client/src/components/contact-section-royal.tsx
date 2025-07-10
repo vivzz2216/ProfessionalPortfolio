@@ -94,7 +94,7 @@ export default function ContactSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -112,7 +112,7 @@ export default function ContactSection() {
                   repeat: Infinity,
                   ease: "linear"
                 }}
-                className="w-80 h-80 mx-auto lg:mx-0 mb-8 relative"
+                className="w-96 h-96 mx-auto lg:mx-0 mb-8 relative"
               >
                 <img 
                   src={globeImage} 

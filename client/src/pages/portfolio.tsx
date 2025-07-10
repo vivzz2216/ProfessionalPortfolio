@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Navigation from '@/components/navigation';
 import HeroSection from '@/components/hero-section';
 import AboutSection from '@/components/about-section';
-import SkillsSection from '@/components/skills-section-enhanced';
-import ProjectsSection from '@/components/projects-section-enhanced';
+import SkillsSection from '@/components/skills-section-creative';
+import ProjectsSection from '@/components/projects-section-creative';
 import ContactSection from '@/components/contact-section-royal';
-import LoadingScreen from '@/components/loading-screen';
+import LoadingScreen from '@/components/loading-screen-creative';
 import Footer from '@/components/footer';
 import AdvancedBackground from '@/components/advanced-background';
 
