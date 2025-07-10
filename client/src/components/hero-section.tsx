@@ -81,7 +81,7 @@ export default function HeroSection() {
   const particles = Array.from({ length: 30 }, (_, i) => i);
 
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-slate-900 to-blue-800">
       {/* 3D Futuristic Background */}
       <div className="hero-3d-bg">
         {/* Geometric Shapes */}
@@ -138,7 +138,7 @@ export default function HeroSection() {
 
       {/* Parallax overlay */}
       <div 
-        className="absolute inset-0 bg-gradient-to-br from-portfolio-secondary/90 via-portfolio-neutral/80 to-portfolio-secondary/90"
+        className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-slate-900/80 to-blue-800/90"
         style={{ transform: `translate3d(0, ${parallaxOffset}px, 0)` }}
       />
       
@@ -154,21 +154,21 @@ export default function HeroSection() {
         <div className={`text-2xl md:text-4xl lg:text-5xl font-light mb-8 transition-all duration-1000 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <span className="text-portfolio-accent font-['Fira_Code']">&lt;</span>
-          <span className="typing-animation inline-block min-w-[300px] text-left">
+          <span className="text-blue-400 font-['Fira_Code']">&lt;</span>
+          <span className="typing-animation inline-block min-w-[300px] text-left text-blue-300">
             {currentText}
           </span>
-          <span className="text-portfolio-accent font-['Fira_Code']">&gt;</span>
+          <span className="text-blue-400 font-['Fira_Code']">&gt;</span>
         </div>
 
         {/* Tech Icons */}
         <div className={`flex justify-center space-x-8 mb-12 transition-all duration-1000 delay-400 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <Terminal className="w-8 h-8 text-portfolio-primary hover:text-portfolio-accent transition-colors duration-300 hover:scale-110 transform" />
-          <Code2 className="w-8 h-8 text-portfolio-primary hover:text-portfolio-accent transition-colors duration-300 hover:scale-110 transform" />
-          <Database className="w-8 h-8 text-portfolio-primary hover:text-portfolio-accent transition-colors duration-300 hover:scale-110 transform" />
-          <Cloud className="w-8 h-8 text-portfolio-primary hover:text-portfolio-accent transition-colors duration-300 hover:scale-110 transform" />
+          <Terminal className="w-8 h-8 text-blue-500 hover:text-blue-300 transition-colors duration-300 hover:scale-110 transform" />
+          <Code2 className="w-8 h-8 text-blue-500 hover:text-blue-300 transition-colors duration-300 hover:scale-110 transform" />
+          <Database className="w-8 h-8 text-blue-500 hover:text-blue-300 transition-colors duration-300 hover:scale-110 transform" />
+          <Cloud className="w-8 h-8 text-blue-500 hover:text-blue-300 transition-colors duration-300 hover:scale-110 transform" />
         </div>
 
         {/* CTA Button */}
@@ -177,7 +177,7 @@ export default function HeroSection() {
         }`}>
           <button
             onClick={scrollToAbout}
-            className="neon-border hologram-effect px-8 py-4 rounded-lg text-white font-['Orbitron'] font-semibold text-lg tracking-wider uppercase hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-portfolio-primary/50"
+            className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg text-white font-['Orbitron'] font-semibold text-lg tracking-wider uppercase hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/50"
           >
             <span className="flex items-center">
               Explore My Universe
@@ -190,15 +190,15 @@ export default function HeroSection() {
         <div className={`mt-8 flex justify-center items-center space-x-3 transition-all duration-1000 delay-800 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <div className="w-3 h-3 bg-portfolio-accent rounded-full animate-pulse"></div>
-          <span className="text-sm font-['Fira_Code'] text-portfolio-accent">
+          <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+          <span className="text-sm font-['Fira_Code'] text-blue-400">
             STATUS: READY TO INNOVATE
           </span>
         </div>
       </div>
       
       {/* Enhanced Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-portfolio-accent animate-bounce">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-blue-400 animate-bounce">
         <div className="flex flex-col items-center space-y-2">
           <div className="text-xs font-['Fira_Code'] tracking-wider">SCROLL</div>
           <ChevronDown size={24} className="animate-pulse" />

@@ -31,13 +31,13 @@
   --chart-4: 43 74% 66%;
   --chart-5: 27 87% 67%;
   
-  /* Portfolio specific colors - Futuristic Theme */
-  --portfolio-primary: 230 100% 60%; /* #3366FF - Electric Blue */
-  --portfolio-secondary: 250 100% 8%; /* #0A0A1A - Deep Space */
-  --portfolio-accent: 170 100% 50%; /* #00FFAA - Neon Green */
-  --portfolio-neutral: 240 10% 5%; /* #0D0D14 - Dark Background */
-  --portfolio-glow: 230 100% 70%; /* #4D79FF - Glow Blue */
-  --portfolio-purple: 280 100% 60%; /* #9933FF - Electric Purple */
+  /* Portfolio specific colors - Modern Blue Theme */
+  --portfolio-primary: 217 91% 60%; /* #3B82F6 - Professional Blue */
+  --portfolio-secondary: 224 71% 4%; /* #0F172A - Deep Navy */
+  --portfolio-accent: 213 94% 68%; /* #60A5FA - Light Blue */
+  --portfolio-neutral: 222 84% 5%; /* #1E293B - Dark Slate */
+  --portfolio-glow: 217 91% 70%; /* #60A5FA - Soft Blue Glow */
+  --portfolio-light: 214 32% 91%; /* #E2E8F0 - Light Gray */
 }
 
 .dark {

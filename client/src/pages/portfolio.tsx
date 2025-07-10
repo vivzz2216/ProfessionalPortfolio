@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Navigation from '@/components/navigation';
 import HeroSection from '@/components/hero-section';
-import AboutSection from '@/components/about-section';
-import SkillsSection from '@/components/skills-section-genz';
-import ProjectsSection from '@/components/projects-section-genz';
-import ContactSection from '@/components/contact-section';
+import AboutSectionClean from '@/components/about-section-clean';
+import SkillsSectionClean from '@/components/skills-section-clean';
+import ProjectsSectionClean from '@/components/projects-section-clean';
+import ContactSectionClean from '@/components/contact-section-clean';
 import LoadingScreen from '@/components/loading-screen';
 import Footer from '@/components/footer';
 import AdvancedBackground from '@/components/advanced-background';
@@ -21,15 +21,14 @@ export default function Portfolio() {
   }
 
   return (
-    <div className="min-h-screen relative bg-portfolio-neutral">
-      <AdvancedBackground />
+    <div className="min-h-screen relative bg-white">
       <Navigation />
       <main className="relative z-10">
         <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ContactSection />
+        <AboutSectionClean />
+        <SkillsSectionClean />
+        <ProjectsSectionClean />
+        <ContactSectionClean />
       </main>
       <Footer />
     </div>
