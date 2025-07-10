@@ -338,63 +338,72 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
   return (
     <div className="fixed inset-0 z-50 overflow-hidden bg-black">
       {/* 3D Stars Background */}
-      <div className="absolute inset-0">
-        {/* Large Stars */}
-        {Array.from({ length: 50 }, (_, i) => (
-          <div
-            key={`large-${i}`}
-            className="absolute rounded-full bg-blue-300 animate-pulse"
-            style={{
-              width: `${Math.random() * 4 + 2}px`,
-              height: `${Math.random() * 4 + 2}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
-              transform: `translateZ(${Math.random() * 200 + 100}px)`,
-              boxShadow: `0 0 ${Math.random() * 15 + 10}px rgba(147, 197, 253, 0.9)`,
-              animation: `float3d ${4 + Math.random() * 4}s ease-in-out infinite`,
-            }}
-          />
-        ))}
+      <div className="absolute inset-0 z-0">
+        {/* Small Stars */}
+        {Array.from({ length: 200 }, (_, i) => {
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const delay = Math.random() * 3;
+          const duration = 2 + Math.random() * 3;
+          return (
+            <div
+              key={`small-${i}`}
+              className="absolute rounded-full bg-white opacity-70"
+              style={{
+                width: '1px',
+                height: '1px',
+                left: `${x}%`,
+                top: `${y}%`,
+                boxShadow: '0 0 6px rgba(255, 255, 255, 0.8)',
+                animation: `twinkle ${duration}s ease-in-out ${delay}s infinite`,
+              }}
+            />
+          );
+        })}
         
         {/* Medium Stars */}
-        {Array.from({ length: 100 }, (_, i) => (
-          <div
-            key={`medium-${i}`}
-            className="absolute rounded-full bg-white animate-pulse"
-            style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
-              transform: `translateZ(${Math.random() * 150 + 50}px)`,
-              boxShadow: `0 0 ${Math.random() * 10 + 5}px rgba(255, 255, 255, 0.8)`,
-              animation: `float3d ${3 + Math.random() * 3}s ease-in-out infinite`,
-            }}
-          />
-        ))}
+        {Array.from({ length: 100 }, (_, i) => {
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const delay = Math.random() * 3;
+          const duration = 2 + Math.random() * 3;
+          return (
+            <div
+              key={`medium-${i}`}
+              className="absolute rounded-full bg-blue-300 opacity-80"
+              style={{
+                width: '2px',
+                height: '2px',
+                left: `${x}%`,
+                top: `${y}%`,
+                boxShadow: '0 0 10px rgba(147, 197, 253, 0.9)',
+                animation: `twinkle ${duration}s ease-in-out ${delay}s infinite`,
+              }}
+            />
+          );
+        })}
         
-        {/* Small Stars */}
-        {Array.from({ length: 150 }, (_, i) => (
-          <div
-            key={`small-${i}`}
-            className="absolute rounded-full bg-gray-300 animate-pulse"
-            style={{
-              width: `${Math.random() * 2 + 0.5}px`,
-              height: `${Math.random() * 2 + 0.5}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
-              transform: `translateZ(${Math.random() * 100}px)`,
-              boxShadow: `0 0 ${Math.random() * 5 + 3}px rgba(209, 213, 219, 0.6)`,
-              animation: `float3d ${2 + Math.random() * 2}s ease-in-out infinite`,
-            }}
-          />
-        ))}
+        {/* Large Stars */}
+        {Array.from({ length: 50 }, (_, i) => {
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const delay = Math.random() * 3;
+          const duration = 2 + Math.random() * 3;
+          return (
+            <div
+              key={`large-${i}`}
+              className="absolute rounded-full bg-blue-500 opacity-90"
+              style={{
+                width: '3px',
+                height: '3px',
+                left: `${x}%`,
+                top: `${y}%`,
+                boxShadow: '0 0 15px rgba(59, 130, 246, 1)',
+                animation: `twinkle ${duration}s ease-in-out ${delay}s infinite`,
+              }}
+            />
+          );
+        })}
       </div>
 
       {/* 3D Canvas Container */}
@@ -502,6 +511,17 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
           }
           50% {
             transform: translateY(-20px) rotateX(180deg) rotateY(180deg);
+          }
+        }
+
+        @keyframes twinkle {
+          0%, 100% {
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.5);
           }
         }
       `}</style>
