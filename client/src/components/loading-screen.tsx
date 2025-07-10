@@ -109,7 +109,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
           >
             <div className="w-full h-full bg-gradient-to-br from-portfolio-primary to-portfolio-accent rounded-full flex items-center justify-center shadow-2xl shadow-portfolio-primary/50">
-              <div className="text-3xl font-bold text-white font-['Orbitron']">VP</div>
+              <div className="text-3xl font-bold text-white font-['Cinzel']">VP</div>
             </div>
             <div className="absolute inset-0 border-2 border-portfolio-primary rounded-full animate-pulse"></div>
             <div className="absolute inset-2 border border-portfolio-accent rounded-full animate-ping"></div>
@@ -117,7 +117,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
 
           {/* Loading text */}
           <motion.h1
-            className="text-4xl font-bold text-white mb-2 font-['Orbitron'] bg-gradient-to-r from-portfolio-primary to-portfolio-accent bg-clip-text text-transparent"
+            className="text-4xl font-bold text-white mb-2 font-['Cinzel'] bg-gradient-to-r from-portfolio-primary to-portfolio-accent bg-clip-text text-transparent"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -126,7 +126,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
           </motion.h1>
 
           <motion.p
-            className="text-portfolio-accent mb-8 font-['Fira_Code'] text-sm"
+            className="text-portfolio-accent mb-8 font-['Cormorant_Garamond'] text-sm"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -153,7 +153,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
           {/* Dynamic loading text */}
           <motion.div
             key={currentText}
-            className="text-portfolio-accent font-['Fira_Code'] text-sm h-6"
+            className="text-portfolio-accent font-['Cormorant_Garamond'] text-sm h-6"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}

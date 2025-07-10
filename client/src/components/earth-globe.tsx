@@ -1,4 +1,4 @@
-import earthImage from '@assets/11371425_1752099046446.png';
+import earthImage from '@assets/TERRE_baseColor_1752098060612.jpeg';
 
 export default function EarthGlobe() {
   return (
@@ -17,28 +17,10 @@ export default function EarthGlobe() {
           <div className="absolute inset-0 bg-gradient-to-br from-portfolio-primary/10 via-transparent to-portfolio-accent/10 rounded-full"></div>
         </div>
         
-        {/* Hero-style orbital rings */}
-        <div className="absolute inset-0 rounded-full border-2 border-portfolio-primary/30 animate-pulse"></div>
-        <div className="absolute inset-4 rounded-full border border-portfolio-accent/20 animate-pulse delay-500"></div>
-        <div className="absolute inset-8 rounded-full border border-portfolio-primary/15 animate-pulse delay-1000"></div>
+        {/* Simplified orbital rings - no circles beside earth */}
         
-        {/* Enhanced satellite orbits */}
-        <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
-          <div className="absolute -top-4 left-1/2 w-4 h-4 bg-gradient-to-r from-portfolio-accent to-portfolio-primary rounded-sm transform -translate-x-1/2 shadow-lg shadow-portfolio-accent/50"></div>
-        </div>
-        <div className="absolute inset-0 animate-spin" style={{ animationDuration: '30s', animationDirection: 'reverse' }}>
-          <div className="absolute -bottom-4 left-1/2 w-3 h-3 bg-gradient-to-r from-portfolio-primary to-portfolio-accent rounded-sm transform -translate-x-1/2 shadow-lg shadow-portfolio-primary/50"></div>
-        </div>
-        
-        {/* Hero-style outer atmosphere */}
+        {/* Clean atmosphere glow - no extra elements */}
         <div className="absolute inset-0 rounded-full bg-portfolio-primary/10 blur-xl animate-pulse"></div>
-        <div className="absolute inset-4 rounded-full bg-portfolio-accent/5 blur-lg animate-pulse delay-700"></div>
-        
-        {/* Communication lines */}
-        <div className="absolute inset-0 opacity-60">
-          <div className="absolute top-1/2 left-1/2 w-40 h-0.5 bg-gradient-to-r from-transparent via-portfolio-accent/60 to-transparent transform -translate-x-1/2 -translate-y-1/2 rotate-45 animate-pulse"></div>
-          <div className="absolute top-1/2 left-1/2 w-40 h-0.5 bg-gradient-to-r from-transparent via-portfolio-primary/60 to-transparent transform -translate-x-1/2 -translate-y-1/2 -rotate-45 animate-pulse delay-500"></div>
-        </div>
       </div>
     </div>
   );

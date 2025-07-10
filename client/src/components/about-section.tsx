@@ -24,7 +24,7 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-20">
-          <h2 className={`text-5xl md:text-6xl font-bold text-white mb-6 transition-all duration-1000 font-['Orbitron'] ${
+          <h2 className={`text-5xl md:text-6xl font-bold text-white mb-6 transition-all duration-1000 font-['Cinzel'] ${
             sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <span className="glow-text">DEVELOPER PROFILE</span>
@@ -62,8 +62,8 @@ export default function AboutSection() {
             <div className="lg:col-span-2">
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-4xl font-bold text-white mb-2 font-['Orbitron']">VIVEK PILLAI</h3>
-                  <p className="text-xl text-portfolio-accent font-['Orbitron']">Full-Stack Developer | Data Analyst | IT Engineer</p>
+                  <h3 className="text-4xl font-bold text-white mb-2 font-['Cinzel']">VIVEK PILLAI</h3>
+                  <p className="text-xl text-portfolio-accent font-['Playfair_Display']">Full-Stack Developer | Data Analyst | IT Engineer</p>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-6">
@@ -72,13 +72,13 @@ export default function AboutSection() {
                       <div className="w-8 h-8 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
                         <MapPin className="w-4 h-4 text-portfolio-accent" />
                       </div>
-                      <span className="text-gray-300 font-['Fira_Code']">Mumbai, India</span>
+                      <span className="text-gray-300 font-['Cormorant_Garamond']">Mumbai, India</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <div className="w-8 h-8 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
                         <GraduationCap className="w-4 h-4 text-portfolio-accent" />
                       </div>
-                      <span className="text-gray-300 font-['Fira_Code']">SFIT - IT Engineering</span>
+                      <span className="text-gray-300 font-['Cormorant_Garamond']">SFIT - IT Engineering</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <div className="w-8 h-8 bg-portfolio-primary/20 rounded-full flex items-center justify-center">
@@ -118,11 +118,11 @@ export default function AboutSection() {
           summaryVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <div className="hologram-effect p-8 rounded-xl">
-            <h4 className="text-2xl font-bold text-portfolio-accent mb-6 font-['Orbitron'] flex items-center">
+            <h4 className="text-2xl font-bold text-portfolio-accent mb-6 font-['Playfair_Display'] flex items-center">
               <Award className="mr-3 w-6 h-6" />
               Professional Summary
             </h4>
-            <p className="text-gray-300 text-lg leading-relaxed font-['Inter']">
+            <p className="text-gray-300 text-lg leading-relaxed font-['Cormorant_Garamond']">
               Final-year Information Technology student with a strong foundation in <span className="text-portfolio-accent">Full Stack Development</span>, 
               API development using <span className="text-portfolio-accent">FastAPI</span>, and data handling with <span className="text-portfolio-accent">Python</span> and databases. 
               Passionate about building scalable applications and analyzing data effectively.

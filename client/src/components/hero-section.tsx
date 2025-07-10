@@ -144,7 +144,7 @@ export default function HeroSection() {
       
       <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-5xl">
         {/* Main Title */}
-        <h1 className={`text-5xl md:text-7xl lg:text-8xl font-bold mb-6 glow-text font-['Orbitron'] transition-all duration-1000 ${
+        <h1 className={`text-5xl md:text-7xl lg:text-8xl font-bold mb-6 glow-text font-['Cinzel'] transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           VIVEK PILLAI

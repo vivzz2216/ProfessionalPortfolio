@@ -1,0 +1,274 @@
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import { motion } from 'framer-motion';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { Mail, Phone, MapPin, Send, Star, Crown } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { insertContactMessageSchema } from '@shared/schema';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { apiRequest } from '@/lib/queryClient';
+import { useToast } from '@/hooks/use-toast';
+import { z } from 'zod';
+
+type ContactFormData = z.infer<typeof insertContactMessageSchema>;
+
+export default function ContactSection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation();
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(insertContactMessageSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    },
+  });
+
+  const contactMutation = useMutation({
+    mutationFn: (data: ContactFormData) => apiRequest('POST', '/api/contact', data),
+    onSuccess: () => {
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
+      form.reset();
+      queryClient.invalidateQueries({ queryKey: ['/api/contact-messages'] });
+    },
+    onError: (error) => {
+      toast({
+        title: "Error Sending Message",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const onSubmit = (data: ContactFormData) => {
+    contactMutation.mutate(data);
+  };
+
+  return (
+    <section ref={sectionRef} id="contact" className="py-20 bg-gradient-to-br from-portfolio-secondary via-portfolio-neutral to-black relative overflow-hidden">
+      {/* Royal Background Effects */}
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute top-10 right-10 w-96 h-96 bg-gradient-to-r from-portfolio-primary/30 to-portfolio-accent/30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-r from-portfolio-accent/30 to-portfolio-primary/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-portfolio-primary/20 rounded-full blur-2xl animate-pulse delay-500"></div>
+      </div>
+      
+      {/* Floating Royal Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-gradient-to-r from-portfolio-accent to-portfolio-primary rounded-full animate-ping"></div>
+        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-portfolio-primary rounded-full animate-ping delay-500"></div>
+        <div className="absolute top-1/2 left-1/3 w-1 h-1 bg-portfolio-accent rounded-full animate-ping delay-1000"></div>
+        <div className="absolute top-1/5 right-1/3 w-1 h-1 bg-portfolio-accent rounded-full animate-ping delay-1500"></div>
+        <div className="absolute bottom-1/4 left-1/5 w-1 h-1 bg-portfolio-primary rounded-full animate-ping delay-2000"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <div className="flex items-center justify-center mb-6">
+            <Crown className="w-8 h-8 text-portfolio-accent mr-3" />
+            <h2 className="text-5xl font-bold text-white font-['Cinzel']">
+              Royal <span className="bg-gradient-to-r from-portfolio-primary to-portfolio-accent bg-clip-text text-transparent">Contact</span>
+            </h2>
+            <Crown className="w-8 h-8 text-portfolio-primary ml-3" />
+          </div>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-['Cormorant_Garamond']">
+            Let's collaborate and create something extraordinary together. Your vision, combined with my expertise, can achieve remarkable results.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isVisible ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8"
+          >
+            <div className="bg-gradient-to-br from-portfolio-secondary/40 to-portfolio-neutral/20 backdrop-blur-lg rounded-2xl p-8 border border-portfolio-primary/20">
+              <h3 className="text-3xl font-bold text-white mb-8 font-['Playfair_Display']">
+                Get In Touch
+              </h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4 group">
+                  <div className="p-3 rounded-full bg-portfolio-primary/20 group-hover:bg-portfolio-primary/30 transition-colors duration-300">
+                    <Mail className="w-6 h-6 text-portfolio-accent" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold font-['Cormorant_Garamond']">Email</p>
+                    <p className="text-gray-300 font-['Cormorant_Garamond']">vivek.pillai@example.com</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-4 group">
+                  <div className="p-3 rounded-full bg-portfolio-primary/20 group-hover:bg-portfolio-primary/30 transition-colors duration-300">
+                    <Phone className="w-6 h-6 text-portfolio-accent" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold font-['Cormorant_Garamond']">Phone</p>
+                    <p className="text-gray-300 font-['Cormorant_Garamond']">+91 98765 43210</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-4 group">
+                  <div className="p-3 rounded-full bg-portfolio-primary/20 group-hover:bg-portfolio-primary/30 transition-colors duration-300">
+                    <MapPin className="w-6 h-6 text-portfolio-accent" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold font-['Cormorant_Garamond']">Location</p>
+                    <p className="text-gray-300 font-['Cormorant_Garamond']">Mumbai, India</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-8 p-6 bg-gradient-to-r from-portfolio-primary/10 to-portfolio-accent/10 rounded-lg border border-portfolio-primary/20">
+                <div className="flex items-center mb-4">
+                  <Star className="w-5 h-5 text-yellow-400 mr-2" />
+                  <h4 className="text-white font-bold font-['Playfair_Display']">Why Choose Me?</h4>
+                </div>
+                <ul className="space-y-2 text-gray-300 font-['Cormorant_Garamond']">
+                  <li>• Professional & Timely Delivery</li>
+                  <li>• Cutting-edge Technology Stack</li>
+                  <li>• 24/7 Communication & Support</li>
+                  <li>• Competitive Pricing</li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Royal Contact Form */}
+          <div ref={formRef} className={`transition-all duration-1000 delay-600 ${
+            formVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+          }`}>
+            <Card className="bg-gradient-to-br from-portfolio-secondary/40 to-portfolio-neutral/20 backdrop-blur-lg border-portfolio-primary/40 shadow-2xl">
+              <CardHeader className="text-center">
+                <CardTitle className="text-3xl font-bold text-white font-['Cinzel']">
+                  Send Royal Message
+                </CardTitle>
+                <CardDescription className="text-gray-300 text-lg font-['Cormorant_Garamond']">
+                  Share your project details and let's create something magnificent
+                </CardDescription>
+              </CardHeader>
+              
+              <CardContent>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="text-white font-semibold font-['Cormorant_Garamond']">
+                        Your Name
+                      </Label>
+                      <Input
+                        id="name"
+                        {...form.register('name')}
+                        className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond']"
+                        placeholder="Enter your full name"
+                      />
+                      {form.formState.errors.name && (
+                        <p className="text-red-400 text-sm">{form.formState.errors.name.message}</p>
+                      )}
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="text-white font-semibold font-['Cormorant_Garamond']">
+                        Email Address
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        {...form.register('email')}
+                        className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond']"
+                        placeholder="your.email@example.com"
+                      />
+                      {form.formState.errors.email && (
+                        <p className="text-red-400 text-sm">{form.formState.errors.email.message}</p>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="subject" className="text-white font-semibold font-['Cormorant_Garamond']">
+                      Subject
+                    </Label>
+                    <Input
+                      id="subject"
+                      {...form.register('subject')}
+                      className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond']"
+                      placeholder="Brief description of your project"
+                    />
+                    {form.formState.errors.subject && (
+                      <p className="text-red-400 text-sm">{form.formState.errors.subject.message}</p>
+                    )}
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="message" className="text-white font-semibold font-['Cormorant_Garamond']">
+                      Your Message
+                    </Label>
+                    <Textarea
+                      id="message"
+                      {...form.register('message')}
+                      rows={6}
+                      className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 resize-none font-['Cormorant_Garamond']"
+                      placeholder="Tell me about your project, requirements, timeline, and budget..."
+                    />
+                    {form.formState.errors.message && (
+                      <p className="text-red-400 text-sm">{form.formState.errors.message.message}</p>
+                    )}
+                  </div>
+                  
+                  <Button
+                    type="submit"
+                    disabled={contactMutation.isPending}
+                    className="w-full bg-gradient-to-r from-portfolio-primary to-portfolio-accent hover:from-portfolio-accent hover:to-portfolio-primary text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 font-['Cinzel'] text-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {contactMutation.isPending ? (
+                      <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span>Sending...</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center space-x-2">
+                        <Send className="w-5 h-5" />
+                        <span>Send Royal Message</span>
+                      </div>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Bottom Quote */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="text-center mt-16"
+        >
+          <p className="text-2xl text-portfolio-accent font-['Playfair_Display'] italic">
+            "Great things in business are never done by one person. They're done by a team of people."
+          </p>
+          <p className="text-gray-400 mt-2 font-['Cormorant_Garamond']">- Steve Jobs</p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
