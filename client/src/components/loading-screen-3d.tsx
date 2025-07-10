@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
+import Starfield from './starfield';
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -335,83 +336,56 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
     };
   }, []);
 
+  // Generate stars once to avoid re-rendering
+  const [stars] = useState(() => {
+    const smallStars = Array.from({ length: 200 }, (_, i) => ({
+      id: `small-${i}`,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      delay: Math.random() * 3,
+      duration: 2 + Math.random() * 3,
+      size: '1px',
+      color: 'white',
+      glow: '0 0 6px rgba(255, 255, 255, 0.8)',
+    }));
+    
+    const mediumStars = Array.from({ length: 100 }, (_, i) => ({
+      id: `medium-${i}`,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      delay: Math.random() * 3,
+      duration: 2 + Math.random() * 3,
+      size: '2px',
+      color: '#93c5fd',
+      glow: '0 0 10px rgba(147, 197, 253, 0.9)',
+    }));
+    
+    const largeStars = Array.from({ length: 50 }, (_, i) => ({
+      id: `large-${i}`,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      delay: Math.random() * 3,
+      duration: 2 + Math.random() * 3,
+      size: '3px',
+      color: '#3b82f6',
+      glow: '0 0 15px rgba(59, 130, 246, 1)',
+    }));
+    
+    return [...smallStars, ...mediumStars, ...largeStars];
+  });
+
   return (
     <div className="fixed inset-0 z-50 overflow-hidden bg-black">
-      {/* 3D Stars Background */}
-      <div className="absolute inset-0 z-0">
-        {/* Small Stars */}
-        {Array.from({ length: 200 }, (_, i) => {
-          const x = Math.random() * 100;
-          const y = Math.random() * 100;
-          const delay = Math.random() * 3;
-          const duration = 2 + Math.random() * 3;
-          return (
-            <div
-              key={`small-${i}`}
-              className="absolute rounded-full bg-white opacity-70"
-              style={{
-                width: '1px',
-                height: '1px',
-                left: `${x}%`,
-                top: `${y}%`,
-                boxShadow: '0 0 6px rgba(255, 255, 255, 0.8)',
-                animation: `twinkle ${duration}s ease-in-out ${delay}s infinite`,
-              }}
-            />
-          );
-        })}
-        
-        {/* Medium Stars */}
-        {Array.from({ length: 100 }, (_, i) => {
-          const x = Math.random() * 100;
-          const y = Math.random() * 100;
-          const delay = Math.random() * 3;
-          const duration = 2 + Math.random() * 3;
-          return (
-            <div
-              key={`medium-${i}`}
-              className="absolute rounded-full bg-blue-300 opacity-80"
-              style={{
-                width: '2px',
-                height: '2px',
-                left: `${x}%`,
-                top: `${y}%`,
-                boxShadow: '0 0 10px rgba(147, 197, 253, 0.9)',
-                animation: `twinkle ${duration}s ease-in-out ${delay}s infinite`,
-              }}
-            />
-          );
-        })}
-        
-        {/* Large Stars */}
-        {Array.from({ length: 50 }, (_, i) => {
-          const x = Math.random() * 100;
-          const y = Math.random() * 100;
-          const delay = Math.random() * 3;
-          const duration = 2 + Math.random() * 3;
-          return (
-            <div
-              key={`large-${i}`}
-              className="absolute rounded-full bg-blue-500 opacity-90"
-              style={{
-                width: '3px',
-                height: '3px',
-                left: `${x}%`,
-                top: `${y}%`,
-                boxShadow: '0 0 15px rgba(59, 130, 246, 1)',
-                animation: `twinkle ${duration}s ease-in-out ${delay}s infinite`,
-              }}
-            />
-          );
-        })}
-      </div>
+      {/* Starfield Background */}
+      <Starfield />
 
       {/* 3D Canvas Container */}
       <div
         ref={containerRef}
         className="absolute inset-0"
         style={{
-          background: '#141414',
+          background: 'rgba(20, 20, 20, 0.8)',
+          zIndex: 2,
         }}
       />
 
@@ -433,7 +407,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
       />
 
       {/* Loading Content */}
-      <div className="absolute inset-0 flex items-center justify-center z-10">
+      <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 10 }}>
         <div className="text-center">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
