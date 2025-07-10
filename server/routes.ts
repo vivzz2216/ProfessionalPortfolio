@@ -16,6 +16,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = contactFormSchema.parse(req.body);
       
+      if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+        throw new Error('Email credentials not configured');
+      }
+
       // Create transporter for Gmail
       const transporter = nodemailer.createTransport({
         service: 'gmail',
