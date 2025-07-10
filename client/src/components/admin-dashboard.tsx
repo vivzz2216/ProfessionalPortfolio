@@ -14,7 +14,10 @@ export default function AdminDashboard() {
 
   const { data: messages, isLoading, error } = useQuery({
     queryKey: ['contact-messages'],
-    queryFn: () => apiRequest('GET', '/api/contact-messages') as Promise<ContactMessage[]>,
+    queryFn: async () => {
+      const response = await apiRequest('GET', '/api/contact-messages');
+      return Array.isArray(response) ? response : [];
+    },
   });
 
   if (isLoading) {
@@ -80,10 +83,10 @@ export default function AdminDashboard() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 max-h-96 overflow-y-auto">
-                {messages?.length === 0 ? (
+                {!messages || messages.length === 0 ? (
                   <p className="text-slate-400 text-center py-8">No messages yet</p>
                 ) : (
-                  messages?.map((message) => (
+                  messages.map((message) => (
                     <div
                       key={message.id}
                       className={`p-4 rounded-lg border cursor-pointer transition-all ${
