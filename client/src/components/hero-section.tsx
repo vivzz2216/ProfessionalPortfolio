@@ -10,9 +10,8 @@ export default function HeroSection() {
 
   const titles = [
     'Web Developer',
-    'UI/UX Designer', 
-    'Full-Stack Engineer',
-    'Tech Innovator'
+    'Data Analyst', 
+    'Backend Developer'
   ];
 
   useEffect(() => {
@@ -180,7 +179,7 @@ export default function HeroSection() {
             className="neon-border hologram-effect px-8 py-4 rounded-lg text-white font-['Orbitron'] font-semibold text-lg tracking-wider uppercase hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-portfolio-primary/50"
           >
             <span className="flex items-center">
-              Explore My Universe
+              Get to know me
               <ChevronDown className="ml-3 animate-bounce" size={20} />
             </span>
           </button>
