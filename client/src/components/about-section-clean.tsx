@@ -3,15 +3,16 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { motion } from 'framer-motion';
 import { User, MapPin, Calendar, GraduationCap, Award, Mail, Download } from 'lucide-react';
-import profileImage from '@assets/vivek_1752099066781.jpg';
-import resumePDF from '@assets/vivekpillai_resume_1752099080856.pdf';
+// import profileImage from '@assets/vivek_1752099066781.jpg';
+// import resumePDF from '@assets/vivekpillai_resume_1752099080856.pdf';
 
 export default function AboutSectionClean() {
   const { elementRef, isVisible } = useScrollAnimation();
 
   const handleDownloadResume = () => {
+    // Create a temporary link for resume download
     const link = document.createElement('a');
-    link.href = resumePDF;
+    link.href = '/resume.pdf'; // This would be your actual resume path
     link.download = 'Vivek_Pillai_Resume.pdf';
     link.click();
   };
@@ -52,7 +53,7 @@ export default function AboutSectionClean() {
                     <div className="relative mb-6">
                       <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
                         <img 
-                          src={profileImage} 
+                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" 
                           alt="Vivek Pillai" 
                           className="w-full h-full object-cover"
                         />
