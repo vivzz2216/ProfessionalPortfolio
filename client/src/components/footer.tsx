@@ -5,13 +5,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-900 border-t border-slate-800">
+    <footer className="bg-gray-900 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
           {/* Brand & Info */}
           <div className="space-y-4">
             <h3 className="text-2xl font-bold text-white font-['Orbitron']">
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                 VIVEK PILLAI
               </span>
             </h3>
@@ -33,7 +33,7 @@ export default function Footer() {
                 <li key={item}>
                   <a 
                     href={`#${item.toLowerCase()}`} 
-                    className="text-gray-300 hover:text-blue-400 transition-colors text-sm font-['Inter']"
+                    className="text-gray-300 hover:text-purple-400 transition-colors text-sm font-['Inter']"
                   >
                     {item}
                   </a>
@@ -54,7 +54,7 @@ export default function Footer() {
                 'Web Applications'
               ].map((skill) => (
                 <li key={skill} className="text-gray-300 text-sm font-['Inter'] flex items-center">
-                  <Code className="w-3 h-3 mr-2 text-blue-400" />
+                  <Code className="w-3 h-3 mr-2 text-purple-400" />
                   {skill}
                 </li>
               ))}
@@ -67,7 +67,7 @@ export default function Footer() {
             <div className="space-y-3">
               <a 
                 href="mailto:pillaivivek16@gmail.com" 
-                className="flex items-center space-x-3 text-gray-300 hover:text-blue-400 transition-colors"
+                className="flex items-center space-x-3 text-gray-300 hover:text-purple-400 transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 <span className="text-sm font-['Fira_Code']">pillaivivek16@gmail.com</span>
@@ -83,7 +83,7 @@ export default function Footer() {
                 href="https://github.com/vivekpillai" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-blue-600 transition-all duration-300"
+                className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-purple-600 transition-all duration-300"
               >
                 <Github className="w-4 h-4" />
               </a>
