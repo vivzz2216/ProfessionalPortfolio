@@ -179,7 +179,7 @@ export default function ProjectsSection() {
             className="relative inline-block"
           >
             <h2 className="text-6xl md:text-8xl font-bold text-white mb-6 font-['Cinzel'] relative z-10">
-              <span className="bg-gradient-to-r from-portfolio-primary via-portfolio-accent to-portfolio-primary bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent glow-text-blue">
                 Project Showcase
               </span>
             </h2>
@@ -225,10 +225,10 @@ export default function ProjectsSection() {
                 transition={{ duration: 0.3 }}
                 className="relative h-full"
               >
-                <Card className={`h-full bg-gradient-to-br from-portfolio-secondary/60 to-portfolio-neutral/40 backdrop-blur-lg border-portfolio-primary/30 hover:border-portfolio-accent/50 transition-all duration-500 group-hover:shadow-2xl ${project.glowColor} overflow-hidden`}>
+                <Card className={`h-full bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-lg border-blue-500/30 hover:border-cyan-400/50 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-blue-500/30 overflow-hidden`}>
                   {/* Animated Background */}
                   <div className="absolute inset-0 opacity-10">
-                    <div className={`w-full h-full bg-gradient-to-br ${project.categoryColor} animate-pulse`}></div>
+                    <div className={`w-full h-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 animate-pulse`}></div>
                   </div>
                   
                   {/* Floating Particles */}
@@ -276,7 +276,7 @@ export default function ProjectsSection() {
                       </Badge>
                     </div>
                     
-                    <CardTitle className="text-2xl font-bold text-white mb-3 font-['Playfair_Display'] group-hover:text-portfolio-accent transition-colors duration-300">
+                    <CardTitle className="text-2xl font-bold text-white mb-3 font-['Playfair_Display'] group-hover:text-cyan-400 transition-colors duration-300">
                       {project.title}
                     </CardTitle>
                     
@@ -305,7 +305,7 @@ export default function ProjectsSection() {
                           >
                             <Badge
                               variant="outline"
-                              className="bg-portfolio-secondary/30 border-portfolio-primary/40 text-portfolio-accent hover:bg-portfolio-primary/20 transition-all duration-300 font-['Cormorant_Garamond'] backdrop-blur-sm"
+                              className="bg-slate-800/30 border-blue-500/40 text-cyan-400 hover:bg-blue-500/20 transition-all duration-300 font-['Cormorant_Garamond'] backdrop-blur-sm"
                             >
                               {tech}
                             </Badge>
@@ -323,7 +323,7 @@ export default function ProjectsSection() {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.2, rotate: 360 }}
                           whileTap={{ scale: 0.9 }}
-                          className="p-3 rounded-full bg-gradient-to-r from-portfolio-primary/20 to-portfolio-accent/20 hover:from-portfolio-primary/30 hover:to-portfolio-accent/30 transition-all duration-300 backdrop-blur-sm"
+                          className="p-3 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-400/20 hover:from-blue-500/30 hover:to-cyan-400/30 transition-all duration-300 backdrop-blur-sm"
                         >
                           <Github className="w-5 h-5 text-white" />
                         </motion.a>
@@ -333,7 +333,7 @@ export default function ProjectsSection() {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.2, rotate: -360 }}
                           whileTap={{ scale: 0.9 }}
-                          className="p-3 rounded-full bg-gradient-to-r from-portfolio-accent/20 to-portfolio-primary/20 hover:from-portfolio-accent/30 hover:to-portfolio-primary/30 transition-all duration-300 backdrop-blur-sm"
+                          className="p-3 rounded-full bg-gradient-to-r from-cyan-400/20 to-blue-500/20 hover:from-cyan-400/30 hover:to-blue-500/30 transition-all duration-300 backdrop-blur-sm"
                         >
                           <ExternalLink className="w-5 h-5 text-white" />
                         </motion.a>
@@ -341,7 +341,7 @@ export default function ProjectsSection() {
                     </div>
                     
                     {/* Project Stats */}
-                    <div className="flex items-center justify-between text-sm text-gray-400 pt-4 border-t border-portfolio-primary/20">
+                    <div className="flex items-center justify-between text-sm text-gray-400 pt-4 border-t border-blue-500/20">
                       <motion.div 
                         className="flex items-center space-x-1"
                         whileHover={{ scale: 1.1 }}
@@ -402,7 +402,7 @@ export default function ProjectsSection() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1, y: -5 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center space-x-3 bg-gradient-to-r from-portfolio-primary to-portfolio-accent px-10 py-4 rounded-full text-white font-bold hover:shadow-2xl hover:shadow-portfolio-primary/50 transition-all duration-500 font-['Cormorant_Garamond'] text-lg backdrop-blur-sm"
+            className="inline-flex items-center space-x-3 bg-gradient-to-r from-blue-500 to-cyan-400 px-10 py-4 rounded-full text-white font-bold hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 font-['Cormorant_Garamond'] text-lg backdrop-blur-sm"
           >
             <Github className="w-6 h-6" />
             <span>Explore More Creations</span>

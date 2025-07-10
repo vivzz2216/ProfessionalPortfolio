@@ -11,12 +11,31 @@ import {
   Layers,
   Zap,
   Brain,
-  Shield,
   Cloud,
   Sparkles,
   Star,
   Hexagon
 } from 'lucide-react';
+import { 
+  SiReact, 
+  SiNextdotjs, 
+  SiVuedotjs, 
+  SiTailwindcss, 
+  SiNodedotjs, 
+  SiExpress, 
+  SiFastapi, 
+  SiDjango, 
+  SiPostgresql, 
+  SiMongodb, 
+  SiRedis, 
+  SiGit, 
+  SiDocker, 
+  SiAmazon, 
+  SiLinux, 
+  SiJavascript, 
+  SiTypescript, 
+  SiPython 
+} from 'react-icons/si';
 
 interface Skill {
   name: string;
@@ -28,39 +47,38 @@ interface Skill {
 
 const skills: Skill[] = [
   // Programming Languages
-  { name: 'JavaScript', icon: Code, color: 'text-yellow-400', category: 'Languages', glowColor: 'shadow-yellow-400/50' },
-  { name: 'TypeScript', icon: Code, color: 'text-blue-400', category: 'Languages', glowColor: 'shadow-blue-400/50' },
-  { name: 'Python', icon: Code, color: 'text-green-400', category: 'Languages', glowColor: 'shadow-green-400/50' },
+  { name: 'JavaScript', icon: SiJavascript, color: 'text-yellow-400', category: 'Languages', glowColor: 'shadow-yellow-400/50' },
+  { name: 'TypeScript', icon: SiTypescript, color: 'text-blue-400', category: 'Languages', glowColor: 'shadow-blue-400/50' },
+  { name: 'Python', icon: SiPython, color: 'text-green-400', category: 'Languages', glowColor: 'shadow-green-400/50' },
   { name: 'Java', icon: Code, color: 'text-red-400', category: 'Languages', glowColor: 'shadow-red-400/50' },
   
   // Frontend
-  { name: 'React', icon: Globe, color: 'text-cyan-400', category: 'Frontend', glowColor: 'shadow-cyan-400/50' },
-  { name: 'Next.js', icon: Globe, color: 'text-white', category: 'Frontend', glowColor: 'shadow-white/50' },
-  { name: 'Vue.js', icon: Globe, color: 'text-green-400', category: 'Frontend', glowColor: 'shadow-green-400/50' },
-  { name: 'Tailwind CSS', icon: Layers, color: 'text-teal-400', category: 'Frontend', glowColor: 'shadow-teal-400/50' },
+  { name: 'React', icon: SiReact, color: 'text-cyan-400', category: 'Frontend', glowColor: 'shadow-cyan-400/50' },
+  { name: 'Next.js', icon: SiNextdotjs, color: 'text-white', category: 'Frontend', glowColor: 'shadow-white/50' },
+  { name: 'Vue.js', icon: SiVuedotjs, color: 'text-green-400', category: 'Frontend', glowColor: 'shadow-green-400/50' },
+  { name: 'Tailwind CSS', icon: SiTailwindcss, color: 'text-teal-400', category: 'Frontend', glowColor: 'shadow-teal-400/50' },
   
   // Backend
-  { name: 'Node.js', icon: Server, color: 'text-green-400', category: 'Backend', glowColor: 'shadow-green-400/50' },
-  { name: 'Express', icon: Server, color: 'text-gray-400', category: 'Backend', glowColor: 'shadow-gray-400/50' },
-  { name: 'FastAPI', icon: Zap, color: 'text-teal-400', category: 'Backend', glowColor: 'shadow-teal-400/50' },
-  { name: 'Django', icon: Server, color: 'text-green-600', category: 'Backend', glowColor: 'shadow-green-600/50' },
+  { name: 'Node.js', icon: SiNodedotjs, color: 'text-green-400', category: 'Backend', glowColor: 'shadow-green-400/50' },
+  { name: 'Express', icon: SiExpress, color: 'text-gray-400', category: 'Backend', glowColor: 'shadow-gray-400/50' },
+  { name: 'FastAPI', icon: SiFastapi, color: 'text-teal-400', category: 'Backend', glowColor: 'shadow-teal-400/50' },
+  { name: 'Django', icon: SiDjango, color: 'text-green-600', category: 'Backend', glowColor: 'shadow-green-600/50' },
   
   // Database
-  { name: 'PostgreSQL', icon: Database, color: 'text-blue-400', category: 'Database', glowColor: 'shadow-blue-400/50' },
-  { name: 'MongoDB', icon: Database, color: 'text-green-400', category: 'Database', glowColor: 'shadow-green-400/50' },
-  { name: 'Redis', icon: Database, color: 'text-red-400', category: 'Database', glowColor: 'shadow-red-400/50' },
+  { name: 'PostgreSQL', icon: SiPostgresql, color: 'text-blue-400', category: 'Database', glowColor: 'shadow-blue-400/50' },
+  { name: 'MongoDB', icon: SiMongodb, color: 'text-green-400', category: 'Database', glowColor: 'shadow-green-400/50' },
+  { name: 'Redis', icon: SiRedis, color: 'text-red-400', category: 'Database', glowColor: 'shadow-red-400/50' },
   
   // Tools & Others
-  { name: 'Git', icon: GitBranch, color: 'text-orange-400', category: 'Tools', glowColor: 'shadow-orange-400/50' },
-  { name: 'Docker', icon: Cloud, color: 'text-blue-400', category: 'Tools', glowColor: 'shadow-blue-400/50' },
-  { name: 'AWS', icon: Cloud, color: 'text-yellow-400', category: 'Tools', glowColor: 'shadow-yellow-400/50' },
-  { name: 'Linux', icon: Terminal, color: 'text-yellow-400', category: 'Tools', glowColor: 'shadow-yellow-400/50' },
+  { name: 'Git', icon: SiGit, color: 'text-orange-400', category: 'Tools', glowColor: 'shadow-orange-400/50' },
+  { name: 'Docker', icon: SiDocker, color: 'text-blue-400', category: 'Tools', glowColor: 'shadow-blue-400/50' },
+  { name: 'AWS', icon: SiAmazon, color: 'text-yellow-400', category: 'Tools', glowColor: 'shadow-yellow-400/50' },
+  { name: 'Linux', icon: SiLinux, color: 'text-yellow-400', category: 'Tools', glowColor: 'shadow-yellow-400/50' },
   
   // Mobile & AI
-  { name: 'React Native', icon: Smartphone, color: 'text-blue-400', category: 'Mobile', glowColor: 'shadow-blue-400/50' },
+  { name: 'React Native', icon: SiReact, color: 'text-blue-400', category: 'Mobile', glowColor: 'shadow-blue-400/50' },
   { name: 'Machine Learning', icon: Brain, color: 'text-purple-400', category: 'AI/ML', glowColor: 'shadow-purple-400/50' },
-  { name: 'Data Analysis', icon: Brain, color: 'text-pink-400', category: 'AI/ML', glowColor: 'shadow-pink-400/50' },
-  { name: 'Cybersecurity', icon: Shield, color: 'text-red-400', category: 'Security', glowColor: 'shadow-red-400/50' }
+  { name: 'Data Analysis', icon: Brain, color: 'text-pink-400', category: 'AI/ML', glowColor: 'shadow-pink-400/50' }
 ];
 
 const categories = [
@@ -70,8 +88,7 @@ const categories = [
   { name: 'Database', icon: Database, color: 'from-blue-400 to-indigo-400' },
   { name: 'Tools', icon: GitBranch, color: 'from-orange-400 to-red-400' },
   { name: 'Mobile', icon: Smartphone, color: 'from-blue-400 to-purple-400' },
-  { name: 'AI/ML', icon: Brain, color: 'from-purple-400 to-pink-400' },
-  { name: 'Security', icon: Shield, color: 'from-red-400 to-pink-400' }
+  { name: 'AI/ML', icon: Brain, color: 'from-purple-400 to-pink-400' }
 ];
 
 export default function SkillsSection() {
@@ -134,8 +151,8 @@ export default function SkillsSection() {
             className="relative inline-block"
           >
             <h2 className="text-6xl md:text-7xl font-bold text-white mb-6 font-['Cinzel'] relative z-10">
-              <span className="bg-gradient-to-r from-portfolio-primary via-portfolio-accent to-portfolio-primary bg-clip-text text-transparent">
-                Technical Arsenal
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent glow-text-blue">
+                Technical Skills
               </span>
             </h2>
             <div className="absolute inset-0 bg-gradient-to-r from-portfolio-primary/30 to-portfolio-accent/30 blur-3xl animate-pulse"></div>

@@ -85,7 +85,7 @@ export default function ContactSection() {
           <div className="flex items-center justify-center mb-6">
             <Crown className="w-8 h-8 text-portfolio-accent mr-3" />
             <h2 className="text-5xl font-bold text-white font-['Cinzel']">
-              Royal <span className="bg-gradient-to-r from-portfolio-primary to-portfolio-accent bg-clip-text text-transparent">Contact</span>
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent glow-text-blue">Contact Me</span>
             </h2>
             <Crown className="w-8 h-8 text-portfolio-primary ml-3" />
           </div>
@@ -94,53 +94,36 @@ export default function ContactSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-          {/* 3D Globe Animation */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isVisible ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1.2, delay: 0.2 }}
-            className="relative flex justify-center items-center"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isVisible ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8"
           >
-            <div className="relative">
+            <div className="text-center lg:text-left">
               <motion.div
                 animate={{ 
-                  rotateY: [0, 360],
-                  scale: [1, 1.05, 1],
+                  rotate: [0, 360],
                 }}
                 transition={{
-                  rotateY: { duration: 20, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                  duration: 30,
+                  repeat: Infinity,
+                  ease: "linear"
                 }}
-                className="w-80 h-80 relative"
+                className="w-80 h-80 mx-auto lg:mx-0 mb-8 relative"
               >
                 <img 
                   src={globeImage} 
                   alt="Connected World" 
                   className="w-full h-full object-contain drop-shadow-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-portfolio-primary/20 via-transparent to-portfolio-accent/20 rounded-full blur-xl animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-cyan-400/20 rounded-full blur-xl animate-pulse"></div>
               </motion.div>
-              
-              {/* Orbiting particles */}
-              <div className="absolute inset-0 animate-spin" style={{ animationDuration: '15s' }}>
-                <div className="absolute -top-4 left-1/2 w-3 h-3 bg-portfolio-accent rounded-full transform -translate-x-1/2 shadow-lg shadow-portfolio-accent/50"></div>
-                <div className="absolute -bottom-4 right-1/2 w-2 h-2 bg-portfolio-primary rounded-full transform translate-x-1/2 shadow-lg shadow-portfolio-primary/50"></div>
-              </div>
-              
-              {/* Pulsing rings */}
-              <div className="absolute inset-0 border-2 border-portfolio-primary/30 rounded-full animate-ping"></div>
-              <div className="absolute inset-8 border border-portfolio-accent/20 rounded-full animate-ping delay-1000"></div>
             </div>
-          </motion.div>
 
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isVisible ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-8"
-          >
+
             <div className="bg-gradient-to-br from-portfolio-secondary/40 to-portfolio-neutral/20 backdrop-blur-lg rounded-2xl p-8 border border-portfolio-primary/20">
               <h3 className="text-3xl font-bold text-white mb-8 font-['Playfair_Display']">
                 Get In Touch
@@ -153,7 +136,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-white font-semibold font-['Cormorant_Garamond']">Email</p>
-                    <p className="text-gray-300 font-['Cormorant_Garamond']">vivek.pillai@example.com</p>
+                    <p className="text-gray-300 font-['Cormorant_Garamond']">pillaivivek16@gmail.com</p>
                   </div>
                 </div>
                 
