@@ -136,3 +136,11 @@ The application is designed to be easily deployable on platforms like Replit, Ve
 - **Blue Fox Logo**: Changed fox logo gradient from orange to blue theme (#3b82f6 to #1d4ed8) matching the overall design
 - **Navigation Enhancement**: Integrated blue fox logo in navigation beside "VIVEK PILLAI" with hover scale animation
 - **Professional Header Styling**: Consistent gradient headers across all sections with proper spacing and typography
+
+### January 2025 - Railway Deployment & PostgreSQL Integration
+- **Database Migration**: Switched from Neon serverless to standard PostgreSQL for Railway compatibility
+- **Environment Configuration**: Added `.env` file with local PostgreSQL connection string
+- **Railway Deployment Setup**: Created `railway.json`, `nixpacks.toml`, and `Procfile` for seamless Railway hosting
+- **Production Optimization**: Updated server configuration to use `process.env.PORT` for Railway deployment
+- **PostgreSQL Dependencies**: Installed `pg` and `@types/pg` packages for direct PostgreSQL connection
+- **Deployment Documentation**: Created comprehensive Railway deployment guide with database setup instructions
