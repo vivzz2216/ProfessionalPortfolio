@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Mail, Phone, MapPin, Send, Star, Crown } from 'lucide-react';
+import globeImage from '@assets/cbbb8400-6edf-4f1f-a093-a75de0b5a684-removebg-preview_1752132074387.png';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { insertContactMessageSchema } from '@shared/schema';
@@ -93,12 +94,51 @@ export default function ContactSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+          {/* 3D Globe Animation */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 1.2, delay: 0.2 }}
+            className="relative flex justify-center items-center"
+          >
+            <div className="relative">
+              <motion.div
+                animate={{ 
+                  rotateY: [0, 360],
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{
+                  rotateY: { duration: 20, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                }}
+                className="w-80 h-80 relative"
+              >
+                <img 
+                  src={globeImage} 
+                  alt="Connected World" 
+                  className="w-full h-full object-contain drop-shadow-2xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-portfolio-primary/20 via-transparent to-portfolio-accent/20 rounded-full blur-xl animate-pulse"></div>
+              </motion.div>
+              
+              {/* Orbiting particles */}
+              <div className="absolute inset-0 animate-spin" style={{ animationDuration: '15s' }}>
+                <div className="absolute -top-4 left-1/2 w-3 h-3 bg-portfolio-accent rounded-full transform -translate-x-1/2 shadow-lg shadow-portfolio-accent/50"></div>
+                <div className="absolute -bottom-4 right-1/2 w-2 h-2 bg-portfolio-primary rounded-full transform translate-x-1/2 shadow-lg shadow-portfolio-primary/50"></div>
+              </div>
+              
+              {/* Pulsing rings */}
+              <div className="absolute inset-0 border-2 border-portfolio-primary/30 rounded-full animate-ping"></div>
+              <div className="absolute inset-8 border border-portfolio-accent/20 rounded-full animate-ping delay-1000"></div>
+            </div>
+          </motion.div>
+
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             className="space-y-8"
           >
             <div className="bg-gradient-to-br from-portfolio-secondary/40 to-portfolio-neutral/20 backdrop-blur-lg rounded-2xl p-8 border border-portfolio-primary/20">
@@ -169,87 +209,229 @@ export default function ContactSection() {
               
               <CardContent>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-white font-semibold font-['Cormorant_Garamond']">
+                  {/* Animated Form Background */}
+                  <div className="absolute inset-0 opacity-10 pointer-events-none">
+                    {Array.from({ length: 10 }, (_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute w-1 h-1 bg-portfolio-accent rounded-full"
+                        style={{
+                          left: `${Math.random() * 100}%`,
+                          top: `${Math.random() * 100}%`,
+                        }}
+                        animate={{
+                          y: [0, -10, 0],
+                          opacity: [0.3, 1, 0.3],
+                          scale: [0.5, 1, 0.5],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          delay: i * 0.2,
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                    <motion.div 
+                      className="space-y-2"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Label htmlFor="name" className="text-white font-semibold font-['Cormorant_Garamond'] flex items-center">
+                        <motion.div
+                          animate={{ rotate: [0, 10, 0] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                          className="w-2 h-2 bg-portfolio-accent rounded-full mr-2"
+                        />
                         Your Name
                       </Label>
-                      <Input
-                        id="name"
-                        {...form.register('name')}
-                        className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond']"
-                        placeholder="Enter your full name"
-                      />
+                      <motion.div
+                        whileFocus={{ scale: 1.02, borderColor: '#00FFAA' }}
+                        className="relative"
+                      >
+                        <Input
+                          id="name"
+                          {...form.register('name')}
+                          className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond'] transition-all duration-300"
+                          placeholder="Enter your full name"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-portfolio-primary/10 to-portfolio-accent/10 rounded-md opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                      </motion.div>
                       {form.formState.errors.name && (
-                        <p className="text-red-400 text-sm">{form.formState.errors.name.message}</p>
+                        <motion.p 
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-400 text-sm"
+                        >
+                          {form.formState.errors.name.message}
+                        </motion.p>
                       )}
-                    </div>
+                    </motion.div>
                     
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-white font-semibold font-['Cormorant_Garamond']">
+                    <motion.div 
+                      className="space-y-2"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Label htmlFor="email" className="text-white font-semibold font-['Cormorant_Garamond'] flex items-center">
+                        <motion.div
+                          animate={{ scale: [1, 1.2, 1] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                          className="w-2 h-2 bg-portfolio-primary rounded-full mr-2"
+                        />
                         Email Address
                       </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        {...form.register('email')}
-                        className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond']"
-                        placeholder="your.email@example.com"
-                      />
+                      <motion.div
+                        whileFocus={{ scale: 1.02, borderColor: '#3366FF' }}
+                        className="relative"
+                      >
+                        <Input
+                          id="email"
+                          type="email"
+                          {...form.register('email')}
+                          className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond'] transition-all duration-300"
+                          placeholder="your.email@example.com"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-portfolio-accent/10 to-portfolio-primary/10 rounded-md opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                      </motion.div>
                       {form.formState.errors.email && (
-                        <p className="text-red-400 text-sm">{form.formState.errors.email.message}</p>
+                        <motion.p 
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-400 text-sm"
+                        >
+                          {form.formState.errors.email.message}
+                        </motion.p>
                       )}
-                    </div>
+                    </motion.div>
                   </div>
                   
-                  <div className="space-y-2">
-                    <Label htmlFor="subject" className="text-white font-semibold font-['Cormorant_Garamond']">
+                  <motion.div 
+                    className="space-y-2"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Label htmlFor="subject" className="text-white font-semibold font-['Cormorant_Garamond'] flex items-center">
+                      <motion.div
+                        animate={{ 
+                          rotate: [0, 360],
+                          scale: [1, 1.3, 1],
+                        }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="w-2 h-2 bg-gradient-to-r from-portfolio-primary to-portfolio-accent rounded-full mr-2"
+                      />
                       Subject
                     </Label>
-                    <Input
-                      id="subject"
-                      {...form.register('subject')}
-                      className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond']"
-                      placeholder="Brief description of your project"
-                    />
+                    <motion.div
+                      whileFocus={{ scale: 1.02, borderColor: '#FF6B6B' }}
+                      className="relative"
+                    >
+                      <Input
+                        id="subject"
+                        {...form.register('subject')}
+                        className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 font-['Cormorant_Garamond'] transition-all duration-300"
+                        placeholder="Brief description of your project"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-portfolio-accent/10 to-portfolio-primary/10 rounded-md opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </motion.div>
                     {form.formState.errors.subject && (
-                      <p className="text-red-400 text-sm">{form.formState.errors.subject.message}</p>
+                      <motion.p 
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-red-400 text-sm"
+                      >
+                        {form.formState.errors.subject.message}
+                      </motion.p>
                     )}
-                  </div>
+                  </motion.div>
                   
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-white font-semibold font-['Cormorant_Garamond']">
+                  <motion.div 
+                    className="space-y-2"
+                    whileHover={{ scale: 1.01 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Label htmlFor="message" className="text-white font-semibold font-['Cormorant_Garamond'] flex items-center">
+                      <motion.div
+                        animate={{ 
+                          opacity: [0.5, 1, 0.5],
+                          scale: [1, 1.5, 1],
+                        }}
+                        transition={{ duration: 2.5, repeat: Infinity }}
+                        className="w-2 h-2 bg-gradient-to-r from-portfolio-accent to-portfolio-primary rounded-full mr-2"
+                      />
                       Your Message
                     </Label>
-                    <Textarea
-                      id="message"
-                      {...form.register('message')}
-                      rows={6}
-                      className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 resize-none font-['Cormorant_Garamond']"
-                      placeholder="Tell me about your project, requirements, timeline, and budget..."
-                    />
+                    <motion.div
+                      whileFocus={{ scale: 1.01, borderColor: '#9333EA' }}
+                      className="relative"
+                    >
+                      <Textarea
+                        id="message"
+                        {...form.register('message')}
+                        rows={6}
+                        className="bg-portfolio-secondary/20 border-portfolio-primary/30 text-white placeholder-gray-400 focus:border-portfolio-accent focus:ring-portfolio-accent/20 resize-none font-['Cormorant_Garamond'] transition-all duration-300"
+                        placeholder="Tell me about your project, requirements, timeline, and budget..."
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-portfolio-primary/10 to-portfolio-accent/10 rounded-md opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </motion.div>
                     {form.formState.errors.message && (
-                      <p className="text-red-400 text-sm">{form.formState.errors.message.message}</p>
+                      <motion.p 
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-red-400 text-sm"
+                      >
+                        {form.formState.errors.message.message}
+                      </motion.p>
                     )}
-                  </div>
+                  </motion.div>
                   
-                  <Button
-                    type="submit"
-                    disabled={contactMutation.isPending}
-                    className="w-full bg-gradient-to-r from-portfolio-primary to-portfolio-accent hover:from-portfolio-accent hover:to-portfolio-primary text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 font-['Cinzel'] text-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    {contactMutation.isPending ? (
-                      <div className="flex items-center space-x-2">
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Sending...</span>
+                    <Button
+                      type="submit"
+                      disabled={contactMutation.isPending}
+                      className="w-full bg-gradient-to-r from-portfolio-primary to-portfolio-accent hover:from-portfolio-accent hover:to-portfolio-primary text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 font-['Cinzel'] text-lg disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-portfolio-accent/20 to-portfolio-primary/20 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative z-10">
+                        {contactMutation.isPending ? (
+                          <div className="flex items-center justify-center space-x-2">
+                            <motion.div
+                              animate={{ rotate: 360 }}
+                              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                              className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                            />
+                            <span>Sending Royal Message...</span>
+                          </div>
+                        ) : (
+                          <div className="flex items-center justify-center space-x-2">
+                            <motion.div
+                              animate={{ 
+                                rotate: [0, 10, 0],
+                                scale: [1, 1.1, 1],
+                              }}
+                              transition={{ duration: 2, repeat: Infinity }}
+                            >
+                              <Send className="w-5 h-5" />
+                            </motion.div>
+                            <span>Send Royal Message</span>
+                            <motion.div
+                              animate={{ 
+                                scale: [1, 1.2, 1],
+                                opacity: [0.5, 1, 0.5],
+                              }}
+                              transition={{ duration: 1.5, repeat: Infinity }}
+                            >
+                              <Crown className="w-5 h-5" />
+                            </motion.div>
+                          </div>
+                        )}
                       </div>
-                    ) : (
-                      <div className="flex items-center space-x-2">
-                        <Send className="w-5 h-5" />
-                        <span>Send Royal Message</span>
-                      </div>
-                    )}
-                  </Button>
+                    </Button>
+                  </motion.div>
                 </form>
               </CardContent>
             </Card>
