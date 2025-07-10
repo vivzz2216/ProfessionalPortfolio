@@ -16,9 +16,12 @@ export default function AdminDashboard() {
     queryKey: ['contact-messages'],
     queryFn: async () => {
       const response = await apiRequest('GET', '/api/contact-messages');
+      console.log('Admin dashboard response:', response);
       return Array.isArray(response) ? response : [];
     },
   });
+
+  console.log('Messages state:', { messages, isLoading, error });
 
   if (isLoading) {
     return (
