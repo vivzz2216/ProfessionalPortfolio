@@ -7,7 +7,7 @@ import ProjectsSection from '@/components/projects-section-creative';
 import ContactSection from '@/components/contact-section-modern';
 import LoadingScreen from '@/components/loading-screen-3d';
 import Footer from '@/components/footer';
-import AdvancedBackground from '@/components/advanced-background';
+import OptimizedBackground from '@/components/optimized-background';
 
 export default function Portfolio() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +22,7 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen relative bg-portfolio-neutral">
-      <AdvancedBackground />
+      <OptimizedBackground />
       <Navigation />
       <main className="relative z-10">
         <HeroSection />

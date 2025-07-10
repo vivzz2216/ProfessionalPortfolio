@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
-import Starfield from './starfield';
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -16,12 +15,12 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
       setProgress(prev => {
         const newProgress = prev + Math.random() * 8;
         if (newProgress >= 100) {
-          setTimeout(onLoadingComplete, 1000);
+          setTimeout(onLoadingComplete, 500);
           return 100;
         }
         return newProgress;
       });
-    }, 150);
+    }, 100);
 
     return () => clearInterval(interval);
   }, [onLoadingComplete]);
@@ -377,7 +376,21 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
   return (
     <div className="fixed inset-0 z-50 overflow-hidden bg-black">
       {/* Starfield Background */}
-      <Starfield />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900/30 to-slate-900">
+        {/* Simple star field */}
+        {Array.from({ length: 50 }, (_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-400 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`,
+            }}
+          />
+        ))}
+      </div>
 
       {/* 3D Canvas Container */}
       <div

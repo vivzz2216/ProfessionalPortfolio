@@ -137,7 +137,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="text-white font-semibold font-['Playfair_Display'] mb-1">Phone</h3>
-                  <p className="text-gray-300 font-['Cormorant_Garamond']">+91 98765 43210</p>
+                  <p className="text-gray-300 font-['Cormorant_Garamond']">+91 7249292743</p>
                 </div>
               </motion.div>
 
