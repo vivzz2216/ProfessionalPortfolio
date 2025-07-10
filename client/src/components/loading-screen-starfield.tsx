@@ -42,7 +42,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-black">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-gradient-to-b from-blue-950 via-blue-900 to-black">
       {/* Animated Stars */}
       <div className="absolute inset-0">
         {/* Small stars */}
@@ -70,11 +70,11 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
             transition={{ duration: 1 }}
             className="text-6xl md:text-7xl font-bold text-white mb-6 font-['Cinzel'] tracking-widest"
             style={{
-              background: 'linear-gradient(white, #38495a)',
+              background: 'linear-gradient(white, #1e40af)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              textShadow: '0 0 30px rgba(255, 255, 255, 0.5)',
+              textShadow: '0 0 30px rgba(59, 130, 246, 0.5)',
             }}
           >
             VIVEK PILLAI
@@ -99,7 +99,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
             <div className="relative">
               <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full relative"
+                  className="h-full bg-gradient-to-r from-blue-600 to-blue-400 rounded-full relative"
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.5, ease: "easeOut" }}

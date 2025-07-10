@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Code2, Zap } from 'lucide-react';
+import FoxLogo from './fox-logo';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,11 +43,8 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center space-x-2">
-            <div className="relative">
-              <Code2 className="text-portfolio-primary w-8 h-8" />
-              <Zap className="absolute -top-1 -right-1 text-portfolio-accent w-4 h-4" />
-            </div>
+          <div className="flex-shrink-0 flex items-center space-x-3">
+            <FoxLogo className="w-10 h-10 hover:scale-110 transition-transform duration-300" />
             <span className="text-xl font-bold text-white glow-text font-['Orbitron']">
               VIVEK PILLAI
             </span>

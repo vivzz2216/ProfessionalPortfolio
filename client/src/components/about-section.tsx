@@ -27,7 +27,7 @@ export default function AboutSection() {
           <h2 className={`text-5xl md:text-6xl font-bold text-white mb-6 transition-all duration-1000 font-['Cinzel'] ${
             sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <span className="glow-text">DEVELOPER PROFILE</span>
+            <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">DEVELOPER PROFILE</span>
           </h2>
           <div className={`section-divider transition-all duration-700 delay-200 ${
             sectionVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
